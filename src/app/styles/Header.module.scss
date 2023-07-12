@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 4.5rem;
+  width: 100%;
+  background-color: #373b53;
+
+  .logo {
+    height: 4.5rem;
+    width: 4.5rem;
+    background-color: #7c5dfa;
+    border-radius: 0 1.25rem 1.25rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-right: auto;
+
+    &::after {
+      content: '';
+      height: 100%;
+      width: 100%;
+      background-color: #9277ff;
+      border-radius: 1.25rem 0 0 1.25rem;
+      position: absolute;
+      top: 50%;
+    }
+
+    img {
+      z-index: 5;
+    }
+  }
+
+  .theme_switch {
+    margin-right: 1.5rem;
+  }
+
+  .avatar {
+    height: 100%;
+    width: 5rem;
+    border-left: 1px solid #494e6e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+    }
+  }
+}
