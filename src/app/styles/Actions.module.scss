@@ -1,0 +1,62 @@
+.actions {
+  display: flex;
+  align-items: center;
+  margin: 2.25rem 1.5rem 2rem;
+
+  .invoices {
+    margin-right: auto;
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04688rem;
+      color: var(--deep-space-blue);
+    }
+
+    p {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 0.9375rem;
+      letter-spacing: -0.00625rem;
+      color: var(--midnight-blue);
+    }
+  }
+
+  .filter {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 0.9375rem;
+    letter-spacing: -0.01563rem;
+    color: var(--deep-space-blue);
+    margin-right: 1.16rem;
+
+    img {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .new_invoice {
+    width: 5.625rem;
+    height: 2.75rem;
+    border-radius: 1.5rem;
+    background-color: var(--highlight-purple);
+    display: flex;
+    align-items: center;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 0.9375rem;
+    letter-spacing: -0.01563rem;
+    color: #fff;
+
+    div {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 0.37rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
