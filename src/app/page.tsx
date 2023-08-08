@@ -1,21 +1,24 @@
+'use client';
+
 import Actions from './components/Actions';
 import Empty from './components/Empty';
 import Header from './components/Header';
 import InvoiceCard from './components/InvoiceCard';
-import data from '@/data.json';
+import useStore from './store/store';
 
 export default function Home() {
-  // const data: any = [];
+  const { invoices } = useStore();
+
   return (
     <>
       <Header />
       <main>
         <Actions />
         <section className='invoices'>
-          {data.length === 0 ? (
+          {invoices.length === 0 ? (
             <Empty />
           ) : (
-            data.map((i) => {
+            invoices.map((i) => {
               return (
                 <InvoiceCard
                   key={i.id}
