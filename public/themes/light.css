@@ -12,4 +12,8 @@
   --neutral-light-alt: #ffffff;
   --neutral-light-alt2: #ffffff;
   --draft-status-bg: rgba(55, 59, 83, 0.0571);
+  --filter-color: #1e2139;
+  --filter-bg: #ffffff;
+  --filter-checkbox: #dfe3fa;
+  --filter-box-shadow: rgba(72, 84, 159, 0.25);
 }

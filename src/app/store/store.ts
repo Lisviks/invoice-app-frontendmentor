@@ -32,10 +32,14 @@ interface Invoice {
 
 interface State {
   invoices: Invoice[];
+  filter: string[];
+  setFilter: (newFilter: string[]) => void;
 }
 
 const useStore = create<State>()((set) => ({
   invoices: [],
+  filter: ['paid', 'pending', 'draft'],
+  setFilter: (newFilter) => set((state) => ({ ...state, filter: newFilter })),
 }));
 
 (function getState() {

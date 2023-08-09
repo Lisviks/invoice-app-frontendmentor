@@ -7,31 +7,22 @@ import InvoiceCard from './components/InvoiceCard';
 import useStore from './store/store';
 
 export default function Home() {
-  const { invoices } = useStore();
+  const { invoices, filter } = useStore();
+
+  const filteredInvoices = invoices.map((i) => {
+    if (filter.includes(i.status)) {
+      return (
+        <InvoiceCard key={i.id} id={i.id} date={i.paymentDue} name={i.clientName} amount={i.total} status={i.status} />
+      );
+    }
+  });
 
   return (
     <>
       <Header />
       <main>
         <Actions />
-        <section className='invoices'>
-          {invoices.length === 0 ? (
-            <Empty />
-          ) : (
-            invoices.map((i) => {
-              return (
-                <InvoiceCard
-                  key={i.id}
-                  id={i.id}
-                  date={i.paymentDue}
-                  name={i.clientName}
-                  amount={i.total}
-                  status={i.status}
-                />
-              );
-            })
-          )}
-        </section>
+        <section className='invoices'>{invoices.length === 0 ? <Empty /> : filteredInvoices}</section>
       </main>
     </>
   );

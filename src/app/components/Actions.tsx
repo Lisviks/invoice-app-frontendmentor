@@ -3,9 +3,13 @@ import ArrowIcon from '@/assets/icon-arrow-down.svg';
 import PlusIcon from '@/assets/icon-plus.svg';
 import styles from '@/app/styles/Actions.module.scss';
 import useStore from '../store/store';
+import Filter from './Filter';
+import { useState } from 'react';
 
 export default function Actions() {
   const { invoices } = useStore();
+
+  const [showFilter, setShowFilter] = useState(false);
 
   return (
     <div className={styles.actions}>
@@ -13,8 +17,11 @@ export default function Actions() {
         <h2>Invoices</h2>
         <p>{invoices.length} invoices</p>
       </div>
-      <div className={styles.filter}>
-        Filter <Image src={ArrowIcon} alt='arrow icon' />
+      <div className={showFilter ? styles.show_filter : styles.filter}>
+        <div onClick={() => setShowFilter((state) => !state)}>
+          Filter <Image src={ArrowIcon} alt='arrow icon' />
+        </div>
+        {showFilter && <Filter />}
       </div>
       <div className={styles.new_invoice}>
         <div>

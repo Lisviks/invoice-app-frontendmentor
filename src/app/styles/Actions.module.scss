@@ -21,17 +21,23 @@
     }
   }
 
-  .filter {
+  .filter,
+  .show_filter {
     font-size: 0.9375rem;
     font-weight: 700;
     line-height: 0.9375rem;
     letter-spacing: -0.01563rem;
     color: var(--deep-space-blue);
     margin-right: 1.16rem;
+    position: relative;
 
     img {
       margin-left: 0.5rem;
     }
+  }
+
+  .show_filter img {
+    transform: rotate(180deg);
   }
 
   .new_invoice {
