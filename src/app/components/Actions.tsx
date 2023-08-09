@@ -7,7 +7,11 @@ import Filter from './Filter';
 import { useState } from 'react';
 
 export default function Actions() {
-  const { invoices } = useStore();
+  const { invoices, filter } = useStore();
+
+  const filteredInvoices = invoices.filter((i) => {
+    if (filter.includes(i.status)) return i;
+  });
 
   const [showFilter, setShowFilter] = useState(false);
 
@@ -15,7 +19,7 @@ export default function Actions() {
     <div className={styles.actions}>
       <div className={styles.invoices}>
         <h2>Invoices</h2>
-        <p>{invoices.length} invoices</p>
+        <p>{filteredInvoices.length} invoices</p>
       </div>
       <div className={showFilter ? styles.show_filter : styles.filter}>
         <div onClick={() => setShowFilter((state) => !state)}>
