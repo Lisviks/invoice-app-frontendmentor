@@ -22,7 +22,9 @@ export default function Home() {
       <Header />
       <main>
         <Actions />
-        <section className='invoices'>{invoices.length === 0 ? <Empty /> : filteredInvoices}</section>
+        <section className='invoices'>
+          {filteredInvoices.filter((i) => i).length === 0 ? <Empty /> : filteredInvoices}
+        </section>
       </main>
     </>
   );
