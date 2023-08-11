@@ -1,4 +1,5 @@
 import styles from '@/app/styles/InvoiceCard.module.scss';
+import Link from 'next/link';
 
 interface Props {
   id: string;
@@ -19,7 +20,7 @@ export default function InvoiceCard({ id, date, name, amount, status }: Props) {
   };
 
   return (
-    <div className={styles.invoice_card}>
+    <Link href={`invoice/${id}`} className={styles.invoice_card}>
       <div className={styles.id}>
         #<span>{id}</span>
       </div>
@@ -32,6 +33,6 @@ export default function InvoiceCard({ id, date, name, amount, status }: Props) {
         <div></div>
         {status}
       </div>
-    </div>
+    </Link>
   );
 }
