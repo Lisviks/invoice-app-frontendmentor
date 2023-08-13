@@ -5,6 +5,7 @@ import useStore from '@/app/store/store';
 import ArrowLeft from '@/assets/icon-arrow-left.svg';
 import Image from 'next/image';
 import styles from '@/app/styles/Invoice.module.scss';
+import formatDate from '@/app/util/formatDate';
 
 export default function ViewInvoice({ params }: { params: { id: string } }) {
   const { invoices } = useStore();
@@ -45,11 +46,11 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
             <div className={styles.dates}>
               <div className={styles.invoice_date}>
                 <p>Invoice Date</p>
-                <p>{invoice.createdAt}</p> {/* TODO: format date */}
+                <p>{formatDate(invoice.createdAt)}</p>
               </div>
               <div className={styles.payment_due}>
                 <p>Payment Due</p>
-                <p>{invoice.paymentDue}</p> {/* TODO: format date */}
+                <p>{formatDate(invoice.paymentDue)}</p>
               </div>
             </div>
             <div className={styles.bill_to}>
