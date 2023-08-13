@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 .empty {
   text-align: center;
   width: 12.875rem;
@@ -25,10 +27,7 @@
   }
 
   p {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    line-height: 0.9375rem;
-    letter-spacing: -0.00625rem;
+    @include font-2;
     color: var(--midnight-blue);
     width: 10.8125rem;
 

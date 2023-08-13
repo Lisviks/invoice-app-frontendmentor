@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 .actions {
   display: flex;
   align-items: center;
@@ -13,20 +15,14 @@
     }
 
     p {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      line-height: 0.9375rem;
-      letter-spacing: -0.00625rem;
+      @include font-2;
       color: var(--midnight-blue);
     }
   }
 
   .filter,
   .show_filter {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    line-height: 0.9375rem;
-    letter-spacing: -0.01563rem;
+    @include font-1;
     color: var(--deep-space-blue);
     margin-right: 1.16rem;
     position: relative;
@@ -41,16 +37,13 @@
   }
 
   .new_invoice {
+    @include font-1;
     width: 5.625rem;
     height: 2.75rem;
     border-radius: 1.5rem;
     background-color: var(--highlight-purple);
     display: flex;
     align-items: center;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    line-height: 0.9375rem;
-    letter-spacing: -0.01563rem;
     color: #fff;
 
     div {

@@ -1,0 +1,13 @@
+@mixin font-1($line-height: 0.9375rem) {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: $line-height;
+  letter-spacing: -0.01563rem;
+}
+
+@mixin font-2($line-height: 0.9375rem) {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: $line-height;
+  letter-spacing: -0.00625rem;
+}
