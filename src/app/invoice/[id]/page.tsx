@@ -9,6 +9,8 @@ import styles from '@/app/styles/Invoice.module.scss';
 export default function ViewInvoice({ params }: { params: { id: string } }) {
   const { invoices } = useStore();
   const invoice = invoices.filter((i) => i.id === params.id)[0];
+  const statusStyle =
+    invoice.status === 'paid' ? styles.paid : invoice.status === 'pending' ? styles.pending : styles.draft;
 
   return (
     <>
@@ -19,7 +21,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
         </div>
         <div className={styles.status}>
           <p>Status</p>
-          <div>
+          <div className={statusStyle}>
             <div></div>
             {invoice.status}
           </div>
@@ -27,7 +29,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
         <div className={styles.invoice_info}>
           <div className={styles.sender}>
             <div>
-              <p>
+              <p className={styles.id}>
                 #<span>{invoice.id}</span>
               </p>
               <p className={styles.description}>{invoice.description}</p>
@@ -52,7 +54,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
             </div>
             <div className={styles.bill_to}>
               <p>Bill To</p>
-              <p className={styles.name}></p>
+              <p className={styles.name}>{invoice.clientName}</p>
               <div className={styles.address}>
                 <p>{invoice.clientAddress.street}</p>
                 <p>{invoice.clientAddress.city}</p>
@@ -66,21 +68,21 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
             </div>
           </div>
           <div className={styles.summary}>
-            <div>
+            <ul className={styles.items}>
               {invoice.items.map((item) => (
-                <div key={item.name}>
+                <li key={item.name}>
                   <div>
                     <p>{item.name}</p>
                     <p>
-                      {item.quantity} x {item.price}
+                      {item.quantity} x £ {item.price}
                     </p>
                   </div>
-                  <p>{item.total}</p>
-                </div>
+                  <p className={styles.total}>£ {item.total}</p>
+                </li>
               ))}
-            </div>
-            <div className={styles.grand_total}>
-              <p>Grand Total</p>
+            </ul>
+            <div className={styles.amount_due}>
+              <p>Amount Due</p>
               <p className={styles.total}>£ {invoice.total}</p>
             </div>
           </div>

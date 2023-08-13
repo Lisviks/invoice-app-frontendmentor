@@ -1,0 +1,305 @@
+.invoice {
+  .back {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 0.9375rem;
+    letter-spacing: -0.01563rem;
+    color: var(--deep-space-blue);
+    margin: 2rem 1.5rem;
+
+    img {
+      margin-right: 1.48rem;
+    }
+  }
+
+  .status {
+    padding: 1.5rem;
+    margin: 1rem 1.5rem;
+    background-color: var(--neutral-light-alt);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 0.9375rem;
+      letter-spacing: -0.00625rem;
+      color: var(--status);
+    }
+
+    .paid,
+    .pending,
+    .draft {
+      height: 2.5rem;
+      width: 6.5rem;
+      border-radius: 0.375rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      line-height: 0.9375rem;
+      letter-spacing: -0.01563rem;
+      grid-column: 2 / 3;
+      grid-row: 2 / 4;
+      align-self: center;
+      justify-self: end;
+      text-transform: capitalize;
+
+      div {
+        height: 0.5rem;
+        width: 0.5rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .paid {
+      background-color: rgba(51, 214, 159, 0.0571);
+      color: #33d69f;
+
+      div {
+        background-color: #33d69f;
+      }
+    }
+
+    .pending {
+      background-color: rgba(255, 143, 0, 0.0571);
+      color: #ff8f00;
+
+      div {
+        background-color: #ff8f00;
+      }
+    }
+
+    .draft {
+      background-color: var(--draft-status-bg);
+      color: var(--neutral-dark);
+
+      div {
+        background-color: var(--neutral-dark);
+      }
+    }
+  }
+
+  .invoice_info {
+    padding: 1.5rem;
+    background-color: var(--neutral-light-alt);
+    margin: 0 1.5rem 3.5rem;
+    border-radius: 0.5rem;
+
+    .sender {
+      .id {
+        font-size: 0.9375rem;
+        font-weight: 700;
+        line-height: 0.9375rem;
+        letter-spacing: -0.01563rem;
+        color: #7e88c3;
+
+        span {
+          color: var(--deep-space-blue);
+        }
+      }
+
+      .description,
+      .address {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 0.9375rem;
+        letter-spacing: -0.00625rem;
+        color: var(--royal-blue);
+      }
+
+      .description {
+        line-height: 0.9375rem;
+        margin-top: 0.25rem;
+      }
+
+      .address {
+        line-height: 1.125rem;
+        margin-top: 1.88rem;
+      }
+    }
+
+    .client {
+      margin-top: 1.94rem;
+      display: flex;
+      flex-wrap: wrap;
+
+      .dates {
+        .invoice_date,
+        .payment_due {
+          p {
+            &:first-child {
+              font-size: 0.8125rem;
+              font-weight: 500;
+              line-height: 0.9375rem;
+              letter-spacing: -0.00625rem;
+              color: var(--royal-blue);
+            }
+
+            &:last-child {
+              font-size: 0.9375rem;
+              font-weight: 700;
+              line-height: 1.25rem;
+              letter-spacing: -0.01563rem;
+              color: var(--deep-space-blue);
+              margin-top: 0.81rem;
+            }
+          }
+        }
+
+        .payment_due {
+          margin-top: 1.94rem;
+        }
+      }
+
+      .bill_to {
+        margin-left: 3.75rem;
+
+        p {
+          font-size: 0.8125rem;
+          font-weight: 500;
+          line-height: 0.9375rem;
+          letter-spacing: -0.00625rem;
+          color: var(--royal-blue);
+        }
+
+        .name {
+          font-size: 0.9375rem;
+          font-weight: 700;
+          line-height: 1.25rem;
+          letter-spacing: -0.01563rem;
+          color: var(--deep-space-blue);
+          margin-top: 0.81rem;
+        }
+
+        .address {
+          margin-top: 0.44rem;
+
+          p {
+            line-height: 1.125rem;
+          }
+        }
+      }
+      .sent_to {
+        margin-top: 2.19rem;
+
+        p {
+          &:first-child {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            line-height: 0.9375rem;
+            letter-spacing: -0.00625rem;
+            color: var(--royal-blue);
+          }
+
+          &:last-child {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            line-height: 1.25rem;
+            letter-spacing: -0.01563rem;
+            color: var(--deep-space-blue);
+            margin-top: 0.81rem;
+          }
+        }
+      }
+    }
+
+    .summary {
+      margin-top: 2.38rem;
+      background-color: var(--platinum-gray);
+      border-radius: 0.5rem;
+      overflow: hidden;
+
+      .items {
+        list-style: none;
+
+        li {
+          font-size: 0.9375rem;
+          font-weight: 700;
+          line-height: 0.9375rem;
+          letter-spacing: -0.01563rem;
+          color: var(--deep-space-blue);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 1.5rem;
+
+          div p {
+            &:last-child {
+              color: var(--royal-blue-alt);
+              margin-top: 0.5rem;
+            }
+          }
+        }
+      }
+
+      .amount_due {
+        background-color: var(--invoice-grand-total);
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--neutral-light);
+
+        p {
+          &:first-child {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            line-height: 1.125rem;
+            letter-spacing: -0.00625rem;
+          }
+
+          &.total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 2rem;
+            letter-spacing: -0.03125rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  padding: 1.35rem 1.5rem;
+  background-color: var(--neutral-light-alt);
+  text-align: center;
+
+  button {
+    height: 3rem;
+    border: none;
+    border-radius: 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 0.9375rem;
+    letter-spacing: -0.01563rem;
+    margin-right: 0.5rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.edit_btn {
+      width: 4.5625rem;
+      background-color: var(--platinum-gray);
+      color: var(--royal-blue);
+    }
+
+    &.delete_btn {
+      width: 5.5625rem;
+      background-color: var(--alert-red);
+      color: var(--neutral-light);
+    }
+
+    &.mark_as_paid_btn {
+      width: 9.3125rem;
+      background-color: var(--highlight-purple);
+      color: var(--neutral-light);
+    }
+  }
+}
