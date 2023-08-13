@@ -6,8 +6,10 @@ import ArrowLeft from '@/assets/icon-arrow-left.svg';
 import Image from 'next/image';
 import styles from '@/app/styles/Invoice.module.scss';
 import formatDate from '@/app/util/formatDate';
+import { useRouter } from 'next/navigation';
 
 export default function ViewInvoice({ params }: { params: { id: string } }) {
+  const router = useRouter();
   const { invoices } = useStore();
   const invoice = invoices.filter((i) => i.id === params.id)[0];
   const statusStyle =
@@ -17,7 +19,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
     <>
       <Header />
       <section className={styles.invoice}>
-        <div className={styles.back}>
+        <div className={styles.back} onClick={router.back}>
           <Image src={ArrowLeft} alt='arrow left' /> Go back
         </div>
         <div className={styles.status}>
