@@ -7,13 +7,18 @@ import Image from 'next/image';
 import styles from '@/app/styles/Invoice.module.scss';
 import formatDate from '@/app/util/formatDate';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import EditInvoice from '@/app/components/EditInvoice';
 
 export default function ViewInvoice({ params }: { params: { id: string } }) {
+  const [openEditInvoice, setOpenEditInvoice] = useState(false);
   const router = useRouter();
   const { invoices } = useStore();
   const invoice = invoices.filter((i) => i.id === params.id)[0];
   const statusStyle =
     invoice.status === 'paid' ? styles.paid : invoice.status === 'pending' ? styles.pending : styles.draft;
+
+  const handleCloseEdit = () => setOpenEditInvoice(false);
 
   return (
     <>
@@ -92,10 +97,18 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
         </div>
       </section>
       <div className={styles.footer}>
-        <button className={styles.edit_btn}>Edit</button>
+        <button
+          className={styles.edit_btn}
+          onClick={() => {
+            setOpenEditInvoice((state) => !state);
+          }}
+        >
+          Edit
+        </button>
         <button className={styles.delete_btn}>Delete</button>
         <button className={styles.mark_as_paid_btn}>Mark as Paid</button>
       </div>
+      <EditInvoice isOpen={openEditInvoice} handleCloseEdit={handleCloseEdit} />
     </>
   );
 }
