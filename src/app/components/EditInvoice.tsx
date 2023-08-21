@@ -2,7 +2,7 @@ import ArrowLeft from '@/assets/icon-arrow-left.svg';
 import Image from 'next/image';
 import styles from '@/app/styles/EditInvoice.module.scss';
 import { Invoice } from '../interfaces';
-import InvoiceForm from './InvoiceForm';
+import InvoiceForm from './invoiceForm/InvoiceForm';
 
 interface Props {
   isOpen: boolean;
