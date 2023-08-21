@@ -67,10 +67,11 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
               <FieldArray name='items'>
                 {(
                   //https://formik.org/docs/api/fieldarray#fieldarray-helpers
-                  { push }: { push: (obj: any) => void }
+                  { push, remove }: { push: (obj: any) => void; remove<T>(index: number): T | undefined }
                 ) => (
                   <>
-                    {values.items.length > 0 && values.items.map((item, index) => <Item key={index} index={index} />)}
+                    {values.items.length > 0 &&
+                      values.items.map((item, index) => <Item key={index} index={index} remove={remove} />)}
                     <button
                       className={styles.add_new_item_btn}
                       type='button'
@@ -97,7 +98,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
   );
 }
 
-function Item({ index }: { index: number }) {
+function Item({ index, remove }: { index: number; remove<T>(index: number): T | undefined }) {
   return (
     <div className={styles.item}>
       <InputField id='itemName' name={`items[${index}].name`} text='Item Name' />
@@ -107,7 +108,7 @@ function Item({ index }: { index: number }) {
         <label htmlFor='total'>Total</label>
         <TotalField index={index} name={`items[${index}].total`} disabled />
       </div>
-      <Image src={DeleteIcon} alt='delete icon' />
+      <Image src={DeleteIcon} alt='delete icon' onClick={() => remove(index)} />
     </div>
   );
 }
