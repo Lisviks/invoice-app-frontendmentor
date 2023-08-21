@@ -11,14 +11,14 @@ interface Props {
 }
 
 export default function EditInvoice({ isOpen, handleCloseEdit, invoice }: Props) {
-  const openingStyles = { transform: 'translateX(20rem)' };
+  const openingStyles = { transform: 'translateX(30rem)' };
 
   return (
     <div className={styles.edit_invoice} style={isOpen ? openingStyles : {}}>
-      <div onClick={handleCloseEdit}>
+      <div className={styles.go_back} onClick={handleCloseEdit}>
         <Image src={ArrowLeft} alt='arrow left' /> Go back
       </div>
-      <div>
+      <div className={styles.edit_id}>
         Edit <span>#</span>
         {invoice.id}
       </div>
