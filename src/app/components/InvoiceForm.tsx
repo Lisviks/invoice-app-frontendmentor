@@ -1,17 +1,16 @@
 'use client';
 
-import { Formik, Form, Field, FieldArray } from 'formik';
+import { Formik, Form, Field, FieldArray, useFormikContext, useField } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from '@/app/styles/InvoiceForm.module.scss';
 import { Invoice } from '../interfaces';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import DeleteIcon from '@/assets/icon-delete.svg';
 
 export default function InvoiceForm({ values }: { values: Invoice }) {
   const initialValues: Invoice = values;
-  console.log(initialValues.items);
   const [startDate, setStartDate] = useState(new Date());
 
   return (
@@ -148,9 +147,32 @@ function Item({ index }: { index: number }) {
       </div>
       <div className={styles.field}>
         <label htmlFor='total'>Total</label>
-        <Field id='total' name={`items[${index}].total`} disabled />
+        <TotalField index={index} name={`items[${index}].total`} disabled />
       </div>
       <Image src={DeleteIcon} alt='delete icon' />
     </div>
+  );
+}
+
+function TotalField(props: any) {
+  const index: number = props.index;
+  const {
+    values: { items },
+    setFieldValue,
+  } = useFormikContext<Invoice>();
+  const [field, meta] = useField(props);
+  const { quantity, price } = items[index];
+
+  useEffect(() => {
+    if (quantity > 0 && price > 0) {
+      setFieldValue(props.name, `${(quantity * price).toFixed(2)}`);
+    }
+  }, [quantity, price, setFieldValue, props.name]);
+
+  return (
+    <>
+      <input {...props} {...field} />
+      {!!meta.touched && !!meta.error && <div>{meta.error}</div>}
+    </>
   );
 }
