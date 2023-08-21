@@ -28,49 +28,19 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
           <Form>
             <p>Bill From</p>
             <div className={styles.sender}>
-              <div className={styles.field}>
-                <label htmlFor='senderStreet'>Street Address</label>
-                <Field id='senderStreet' name='senderAddress.street' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='senderCity'>City</label>
-                <Field id='senderCity' name='senderAddress.city' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='senderPostCode'>Post Code</label>
-                <Field id='senderPostCode' name='senderAddress.postCode' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='senderCountry'>Country</label>
-                <Field id='senderCountry' name='senderAddress.country' />
-              </div>
+              <InputField id='senderStreet' name='senderAddress.street' text='Street Address' />
+              <InputField id='senderCity' name='senderAddress.city' text='City' />
+              <InputField id='senderPostCode' name='senderAddress.postCode' text='Post Code' />
+              <InputField id='senderCountry' name='senderAddress.country' text='Country' />
             </div>
             <p>Bill To</p>
             <div className={styles.client}>
-              <div className={styles.field}>
-                <label htmlFor='clientName'>Client&apos;s Name</label>
-                <Field id='clientName' name='clientName' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='clientEmail'>Client&apos;s Email</label>
-                <Field id='clientEmail' name='clientEmail' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='clientStreet'>Street Address</label>
-                <Field id='clientStreet' name='clientAddress.street' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='clientCity'>City</label>
-                <Field id='clientCity' name='clientAddress.city' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='clientPostCode'>Post Code</label>
-                <Field id='clientPostCode' name='clientAddress.postCode' />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor='clientCountry'>Country</label>
-                <Field id='clientCountry' name='clientAddress.country' />
-              </div>
+              <InputField id='clientName' name='clientName' text="Client's Name" />
+              <InputField id='clientEmail' name='clientEmail' text="Client's Email" />
+              <InputField id='clientStreet' name='clientAddress.street' text='Street Address' />
+              <InputField id='clientCity' name='clientAddress.city' text='City' />
+              <InputField id='clientPostCode' name='clientAddress.postCode' text='Post Code' />
+              <InputField id='clientCountry' name='clientAddress.country' text='Country' />
             </div>
             <div className={styles.date}>
               <div className={styles.field}>
@@ -91,10 +61,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
                   <option value='Net 30 Days'>Net 30 Days</option>
                 </select>
               </div>
-              <div className={styles.filed}>
-                <label htmlFor='projectDescription'>Project Description</label>
-                <Field id='projectDescrption' name='description' />
-              </div>
+              <InputField id='projectDescription' name='description' text='Project Description' />
             </div>
             <div className={styles.item_list}>
               <FieldArray name='items'>
@@ -133,18 +100,9 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
 function Item({ index }: { index: number }) {
   return (
     <div className={styles.item}>
-      <div className={styles.field}>
-        <label htmlFor='itemName'>Item Name</label>
-        <Field id='itemName' name={`items[${index}].name`} />
-      </div>
-      <div className={styles.field}>
-        <label htmlFor='quantity'>Qty.</label>
-        <Field id='quantity' name={`items[${index}].quantity`} />
-      </div>
-      <div className={styles.field}>
-        <label htmlFor='price'>Price</label>
-        <Field id='price' name={`items[${index}].price`} />
-      </div>
+      <InputField id='itemName' name={`items[${index}].name`} text='Item Name' />
+      <InputField id='quantity' name={`items[${index}].quantity`} text='Qty.' />
+      <InputField id='price' name={`items[${index}].price`} text='Price' />
       <div className={styles.field}>
         <label htmlFor='total'>Total</label>
         <TotalField index={index} name={`items[${index}].total`} disabled />
@@ -174,5 +132,14 @@ function TotalField(props: any) {
       <input {...props} {...field} />
       {!!meta.touched && !!meta.error && <div>{meta.error}</div>}
     </>
+  );
+}
+
+function InputField({ id, name, text }: { id: string; name: string; text: string }) {
+  return (
+    <div className={styles.field}>
+      <label htmlFor={id}>{text}</label>
+      <Field id={id} name={name} />
+    </div>
   );
 }
