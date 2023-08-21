@@ -86,8 +86,10 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
               <div className={styles.field}>
                 <label htmlFor='paymentTerms'>Payment Terms</label>
                 <select name='paymentTerms' id='paymentTerms'>
+                  <option value='Net 1 Days'>Net 1 Days</option>
+                  <option value='Net 7 Days'>Net 7 Days</option>
+                  <option value='Net 14 Days'>Net 14 Days</option>
                   <option value='Net 30 Days'>Net 30 Days</option>
-                  <option value='Net 10 Days'>Net 10 Days</option>
                 </select>
               </div>
               <div className={styles.filed}>
