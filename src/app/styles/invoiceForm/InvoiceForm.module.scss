@@ -1,0 +1,66 @@
+@import '../mixins.scss';
+
+.form {
+  p {
+    @include font-1;
+    color: var(--highlight-purple);
+    margin-left: 1.5rem;
+  }
+
+  .sender,
+  .client {
+    margin: 1.5rem 1.5rem 2.56rem;
+  }
+
+  .date {
+    margin: 0 1.5rem 4.31rem;
+  }
+
+  .item_list {
+    margin: 0 1.5rem 1.5rem;
+
+    p {
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 2rem;
+      letter-spacing: -0.02344rem;
+      color: #777f98;
+      margin-bottom: 1.37rem;
+      margin-left: 0;
+    }
+  }
+
+  .spacer {
+    height: 4rem;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+  }
+
+  .actions {
+    padding: 1.34rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
+
+    button {
+      @include font-1;
+      border: none;
+      border-radius: 1.5rem;
+      height: 3rem;
+
+      &.cancel_btn {
+        background-color: var(--platinum-gray);
+        color: var(--royal-blue);
+        width: 6rem;
+        margin-right: 0.5rem;
+      }
+
+      &.submit_btn {
+        background-color: var(--highlight-purple);
+        color: var(--neutral-light);
+        width: 8.625rem;
+      }
+    }
+  }
+}

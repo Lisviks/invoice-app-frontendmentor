@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function EditInvoice({ isOpen, handleCloseEdit, invoice }: Props) {
-  const openingStyles = { transform: 'translateX(30rem)' };
+  const openingStyles = { transform: 'translateX(50rem)' };
 
   return (
     <div className={styles.edit_invoice} style={isOpen ? openingStyles : {}}>

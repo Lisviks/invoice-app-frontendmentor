@@ -25,7 +25,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
         const { values } = formik;
 
         return (
-          <Form>
+          <Form className={styles.form}>
             <p>Bill From</p>
             <div className={styles.sender}>
               <InputField id='senderStreet' name='senderAddress.street' text='Street Address' />
@@ -64,6 +64,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
               <InputField id='projectDescription' name='description' text='Project Description' />
             </div>
             <div className={styles.item_list}>
+              <p>Item List</p>
               <FieldArray name='items'>
                 {(
                   //https://formik.org/docs/api/fieldarray#fieldarray-helpers
@@ -83,6 +84,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
                 )}
               </FieldArray>
             </div>
+            <div className={styles.spacer}></div>
             <div className={styles.actions}>
               <button className={styles.cancel_btn} type='button'>
                 Cancel
