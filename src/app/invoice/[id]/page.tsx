@@ -108,7 +108,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
         <button className={styles.delete_btn}>Delete</button>
         <button className={styles.mark_as_paid_btn}>Mark as Paid</button>
       </div>
-      <EditInvoice isOpen={openEditInvoice} handleCloseEdit={handleCloseEdit} invoice={invoice} />
+      {openEditInvoice && <EditInvoice isOpen={openEditInvoice} handleCloseEdit={handleCloseEdit} invoice={invoice} />}
     </>
   );
 }
