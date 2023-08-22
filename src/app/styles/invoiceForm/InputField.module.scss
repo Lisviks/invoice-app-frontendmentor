@@ -1,0 +1,27 @@
+@import '../mixins.scss';
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.56rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    @include font-2;
+    color: var(--royal-blue-alt);
+    margin-bottom: 0.56rem;
+  }
+
+  input {
+    @include font-1;
+    color: var(--deep-space-blue);
+    height: 3rem;
+    padding: 0 1.25rem;
+    border: 1px solid var(--sky-blue);
+    border-radius: 0.25rem;
+    background-color: var(--neutral-light-alt);
+  }
+}
