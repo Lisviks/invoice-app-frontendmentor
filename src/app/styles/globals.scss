@@ -13,10 +13,14 @@
 body {
   font-family: 'League Spartan', sans-serif;
   background-color: var(--silver-gray);
-  transition: all 0.3s ease;
+  transition-property: background, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 
   & * {
-    transition: all 0.3s ease;
+    transition-property: background, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
   }
 }
 
