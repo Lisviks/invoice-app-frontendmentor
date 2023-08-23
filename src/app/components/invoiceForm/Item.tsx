@@ -10,11 +10,11 @@ export default function Item({ index, remove }: { index: number; remove<T>(index
       <InputField id='itemName' name={`items[${index}].name`} text='Item Name' />
       <InputField id='quantity' name={`items[${index}].quantity`} text='Qty.' />
       <InputField id='price' name={`items[${index}].price`} text='Price' />
-      <div className={styles.field}>
+      <div className={styles.total_field}>
         <label htmlFor='total'>Total</label>
         <TotalField index={index} name={`items[${index}].total`} disabled />
+        <Image src={DeleteIcon} alt='delete icon' onClick={() => remove(index)} />
       </div>
-      <Image src={DeleteIcon} alt='delete icon' onClick={() => remove(index)} />
     </div>
   );
 }

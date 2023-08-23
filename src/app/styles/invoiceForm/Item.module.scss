@@ -1,0 +1,53 @@
+@import '../mixins.scss';
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5625fr) minmax(0, 2.046875fr);
+  gap: 1rem;
+
+  div {
+    margin-bottom: 3rem;
+
+    &:nth-child(1) {
+      grid-column: 1 / 4;
+      margin-bottom: 0.25rem;
+    }
+
+    &:nth-child(2) {
+      grid-column: 1 / 2;
+    }
+
+    &:nth-child(3) {
+      grid-column: 2 / 3;
+    }
+
+    &:nth-child(4) {
+      grid-column: 3 / 4;
+    }
+  }
+
+  .total_field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    label {
+      @include font-2;
+      color: var(--royal-blue-alt);
+      margin-bottom: 0.56rem;
+    }
+
+    input:disabled {
+      @include font-1;
+      color: #888eb0;
+      height: 3rem;
+      border: none;
+    }
+
+    img {
+      position: absolute;
+      right: 0.47rem;
+      bottom: 1rem;
+    }
+  }
+}
