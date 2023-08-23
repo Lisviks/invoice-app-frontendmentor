@@ -4,6 +4,7 @@
   left: -50rem;
   background-color: var(--neutral-light-alt2);
   width: 100vw;
+  transition: transform 0.3s ease;
 
   .go_back {
     margin: 2rem 1.5rem;
