@@ -40,6 +40,7 @@
     input:disabled {
       @include font-1;
       color: #888eb0;
+      background-color: transparent;
       height: 3rem;
       border: none;
     }
