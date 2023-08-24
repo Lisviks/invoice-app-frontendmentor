@@ -38,6 +38,29 @@
 
   .date {
     margin: 0 1.5rem 4.31rem;
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.56rem;
+
+      label {
+        @include font-2;
+        color: var(--royal-blue-alt);
+        margin-bottom: 0.56rem;
+      }
+
+      input {
+        @include font-1;
+        color: var(--deep-space-blue);
+        height: 3rem;
+        width: 100%;
+        padding: 0 1.25rem;
+        border: 1px solid var(--sky-blue);
+        border-radius: 0.25rem;
+        background-color: var(--neutral-light-alt);
+      }
+    }
   }
 
   .item_list {

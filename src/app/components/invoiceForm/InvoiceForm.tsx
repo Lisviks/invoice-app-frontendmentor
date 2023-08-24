@@ -50,6 +50,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
                   name='createdAt'
                   selected={new Date(initialValues.createdAt)}
                   onChange={(date: Date) => setStartDate(date)}
+                  dateFormat='d MMM y'
                 />
               </div>
               <div className={styles.field}>
