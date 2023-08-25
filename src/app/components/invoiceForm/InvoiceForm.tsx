@@ -11,7 +11,7 @@ import Item from './Item';
 
 export default function InvoiceForm({ values }: { values: Invoice }) {
   const initialValues: Invoice = values;
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(null);
 
   return (
     <Formik
@@ -48,7 +48,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
                 <DatePicker
                   id='invoiceDate'
                   name='createdAt'
-                  selected={new Date(initialValues.createdAt)}
+                  selected={startDate || new Date(initialValues.createdAt)}
                   onChange={(date: Date) => setStartDate(date)}
                   dateFormat='d MMM y'
                 />
