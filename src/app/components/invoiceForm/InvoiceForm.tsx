@@ -27,6 +27,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
       onSubmit={(values, actions) => {
         actions.setSubmitting(false);
         values.paymentTerms = paymentTerm;
+        values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
         console.log(values);
       }}
     >
