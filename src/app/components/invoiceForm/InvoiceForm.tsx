@@ -11,11 +11,13 @@ import Item from './Item';
 import Dropdown from './Dropdown';
 import CalendarIcon from '@/assets/icon-calendar.svg';
 import Image from 'next/image';
+import useStore from '@/app/store/store';
 
 export default function InvoiceForm({ values }: { values: Invoice }) {
   const initialValues: Invoice = values;
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
+  const { updateForm } = useStore();
 
   const setPaymentDue = (date: string) => {
     const dateCopy = new Date(date);
@@ -39,7 +41,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
         values.paymentTerms = paymentTerm;
         values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
         values.paymentDue = setPaymentDue(values.createdAt);
-        console.log(values);
+        updateForm(values);
       }}
     >
       {(formik) => {
