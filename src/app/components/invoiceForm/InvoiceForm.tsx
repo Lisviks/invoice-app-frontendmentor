@@ -47,13 +47,16 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
             </div>
             <div className={styles.date}>
               <div className={styles.field}>
-                <label htmlFor='invoiceDate'>Invoice Date</label>
+                <label htmlFor='invoiceDate' className={styles.disabled}>
+                  Invoice Date
+                </label>
                 <DatePicker
                   id='invoiceDate'
                   name='createdAt'
                   selected={startDate || new Date(initialValues.createdAt)}
                   onChange={(date: Date) => setStartDate(date)}
                   dateFormat='d MMM y'
+                  disabled
                 />
               </div>
               <div className={styles.field}>

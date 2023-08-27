@@ -14,7 +14,6 @@ export default function Dropdown({
 
   const paymentTerms = [1, 7, 14, 30];
   const [isOpen, setIsOpen] = useState(false);
-  // const [currentSelection, setCurrentSelection] = useState(1);
   const [scale, setScale] = useState(0);
   const listStyle = { transform: `scale(${scale})` };
 

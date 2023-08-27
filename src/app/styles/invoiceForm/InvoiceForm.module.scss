@@ -48,6 +48,10 @@
         @include font-2;
         color: var(--royal-blue-alt);
         margin-bottom: 0.56rem;
+
+        &.disabled {
+          opacity: 0.5;
+        }
       }
 
       input {
