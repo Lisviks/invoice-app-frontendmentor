@@ -112,7 +112,7 @@ export default function InvoiceForm({ values, closeForm }: { values: Invoice; cl
             </div>
             <div className={styles.spacer}></div>
             <div className={styles.actions}>
-              <button className={styles.cancel_btn} type='button'>
+              <button className={styles.cancel_btn} onClick={closeForm} type='button'>
                 Cancel
               </button>
               <button className={styles.submit_btn} type='submit'>
