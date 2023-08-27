@@ -1,8 +1,9 @@
 @import './mixins.scss';
 
 .react-datepicker-wrapper {
+  width: 100%;
+
   input:disabled {
-    // color: red !important;
     opacity: 0.5;
   }
 }

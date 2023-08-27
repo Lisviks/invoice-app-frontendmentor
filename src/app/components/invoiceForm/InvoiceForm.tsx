@@ -9,6 +9,8 @@ import { useState } from 'react';
 import InputField from './InputField';
 import Item from './Item';
 import Dropdown from './Dropdown';
+import CalendarIcon from '@/assets/icon-calendar.svg';
+import Image from 'next/image';
 
 export default function InvoiceForm({ values }: { values: Invoice }) {
   const initialValues: Invoice = values;
@@ -50,14 +52,17 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
                 <label htmlFor='invoiceDate' className={styles.disabled}>
                   Invoice Date
                 </label>
-                <DatePicker
-                  id='invoiceDate'
-                  name='createdAt'
-                  selected={startDate || new Date(initialValues.createdAt)}
-                  onChange={(date: Date) => setStartDate(date)}
-                  dateFormat='d MMM y'
-                  disabled
-                />
+                <div className={styles.datepicker}>
+                  <DatePicker
+                    id='invoiceDate'
+                    name='createdAt'
+                    selected={startDate || new Date(initialValues.createdAt)}
+                    onChange={(date: Date) => setStartDate(date)}
+                    dateFormat='d MMM y'
+                    disabled
+                  />
+                  <Image src={CalendarIcon} alt='calendar icon' />
+                </div>
               </div>
               <div className={styles.field}>
                 <label htmlFor='paymentTerms'>Payment Terms</label>

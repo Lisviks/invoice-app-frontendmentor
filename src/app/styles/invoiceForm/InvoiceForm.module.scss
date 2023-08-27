@@ -65,6 +65,16 @@
         background-color: var(--neutral-light-alt);
       }
     }
+
+    .datepicker {
+      position: relative;
+      img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 1rem;
+      }
+    }
   }
 
   .item_list {
