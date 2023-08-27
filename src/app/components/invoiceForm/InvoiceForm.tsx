@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from '@/app/styles/invoiceForm/InvoiceForm.module.scss';
 import { Invoice } from '../../interfaces';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InputField from './InputField';
 import Item from './Item';
 import Dropdown from './Dropdown';
@@ -16,6 +16,10 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
   const initialValues: Invoice = values;
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
+
+  useEffect(() => {
+    setPaymentTerm(initialValues.paymentTerms);
+  }, [setPaymentTerm, initialValues]);
 
   return (
     <Formik
