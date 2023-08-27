@@ -13,7 +13,7 @@ import CalendarIcon from '@/assets/icon-calendar.svg';
 import Image from 'next/image';
 import useStore from '@/app/store/store';
 
-export default function InvoiceForm({ values }: { values: Invoice }) {
+export default function InvoiceForm({ values, closeForm }: { values: Invoice; closeForm: () => void }) {
   const initialValues: Invoice = values;
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
@@ -42,6 +42,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
         values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
         values.paymentDue = setPaymentDue(values.createdAt);
         updateForm(values);
+        closeForm();
       }}
     >
       {(formik) => {

@@ -18,7 +18,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
   const statusStyle =
     invoice.status === 'paid' ? styles.paid : invoice.status === 'pending' ? styles.pending : styles.draft;
 
-  const handleCloseEdit = () => setOpenEditInvoice(false);
+  const handleCloseEdit = () => setTimeout(() => setOpenEditInvoice(false), 300);
 
   return (
     <>
