@@ -1,13 +1,17 @@
 import styles from '@/app/styles/DeleteConfirm.module.scss';
 import { SetStateAction, useEffect, useRef } from 'react';
+import useStore from '../store/store';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 
 interface Props {
   id: string;
   setDeleteModal: (value: SetStateAction<boolean>) => void;
+  router: AppRouterInstance;
 }
 
-export default function DeleteConfirm({ id, setDeleteModal }: Props) {
+export default function DeleteConfirm({ id, setDeleteModal, router }: Props) {
   const ref = useRef(null);
+  const { deleteInvoice } = useStore();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -33,7 +37,14 @@ export default function DeleteConfirm({ id, setDeleteModal }: Props) {
           <button className={styles.cancel_btn} onClick={() => setDeleteModal(false)}>
             Cancel
           </button>
-          <button className={styles.delete_btn} onClick={() => setDeleteModal(false)}>
+          <button
+            className={styles.delete_btn}
+            onClick={() => {
+              router.back();
+              setTimeout(() => deleteInvoice(id), 100);
+              setDeleteModal(false);
+            }}
+          >
             Delete
           </button>
         </div>

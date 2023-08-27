@@ -7,6 +7,7 @@ interface State {
   filter: string[];
   setFilter: (newFilter: string[]) => void;
   updateInvoice: (invoice: Invoice) => void;
+  deleteInvoice: (id: string) => void;
 }
 
 const useStore = create<State>()((set) => ({
@@ -26,6 +27,7 @@ const useStore = create<State>()((set) => ({
         }),
       };
     }),
+  deleteInvoice: (id) => set((state) => ({ ...state, invoices: state.invoices.filter((item) => item.id !== id) })),
 }));
 
 (function getState() {

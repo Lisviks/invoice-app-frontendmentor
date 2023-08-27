@@ -121,7 +121,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
         </button>
       </div>
       {openEditInvoice && <EditInvoice isOpen={openEditInvoice} handleCloseEdit={handleCloseEdit} invoice={invoice} />}
-      {deleteModal && <DeleteConfirm id={invoice.id} setDeleteModal={setDeleteModal} />}
+      {deleteModal && <DeleteConfirm id={invoice.id} setDeleteModal={setDeleteModal} router={router} />}
     </>
   );
 }
