@@ -9,9 +9,11 @@ import formatDate from '@/app/util/formatDate';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import EditInvoice from '@/app/components/EditInvoice';
+import DeleteConfirm from '@/app/components/DeleteConfirm';
 
 export default function ViewInvoice({ params }: { params: { id: string } }) {
   const [openEditInvoice, setOpenEditInvoice] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const router = useRouter();
   const { invoices, updateInvoice } = useStore();
   const invoice = invoices.filter((i) => i.id === params.id)[0];
@@ -111,12 +113,15 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
         >
           Edit
         </button>
-        <button className={styles.delete_btn}>Delete</button>
+        <button className={styles.delete_btn} onClick={() => setDeleteModal(true)}>
+          Delete
+        </button>
         <button className={styles.mark_as_paid_btn} onClick={markAsPaidInvoice}>
           Mark as Paid
         </button>
       </div>
       {openEditInvoice && <EditInvoice isOpen={openEditInvoice} handleCloseEdit={handleCloseEdit} invoice={invoice} />}
+      {deleteModal && <DeleteConfirm id={invoice.id} setDeleteModal={setDeleteModal} />}
     </>
   );
 }
