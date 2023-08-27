@@ -3,6 +3,8 @@ import data from '@/data.json';
 import { Invoice } from '../interfaces';
 
 interface State {
+  theme: string;
+  setTheme: (theme: string) => void;
   invoices: Invoice[];
   filter: string[];
   setFilter: (newFilter: string[]) => void;
@@ -11,6 +13,8 @@ interface State {
 }
 
 const useStore = create<State>()((set) => ({
+  theme: 'light',
+  setTheme: (theme) => set((state) => ({ ...state, theme: theme })),
   invoices: [],
   filter: ['paid', 'pending', 'draft'],
   setFilter: (newFilter) => set((state) => ({ ...state, filter: newFilter })),

@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import Image from 'next/image';
 import Logo from '@/assets/logo.svg';
 import MoonIcon from '@/assets/icon-moon.svg';
@@ -8,12 +5,13 @@ import SunIcon from '@/assets/icon-sun.svg';
 import Avatar from '@/assets/image-avatar.jpg';
 import styles from '@/app/styles/Header.module.scss';
 import ThemeSwitcher from './ThemeSwitcher';
+import useStore from '../store/store';
 
 export default function Header() {
-  const [theme, setTheme] = useState('light');
+  const { theme, setTheme } = useStore();
 
   const switchTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
