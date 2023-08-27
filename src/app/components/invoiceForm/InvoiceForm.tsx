@@ -17,7 +17,7 @@ export default function InvoiceForm({ values, closeForm }: { values: Invoice; cl
   const initialValues: Invoice = values;
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
-  const { updateForm } = useStore();
+  const { updateInvoice } = useStore();
 
   const setPaymentDue = (date: string) => {
     const dateCopy = new Date(date);
@@ -41,7 +41,7 @@ export default function InvoiceForm({ values, closeForm }: { values: Invoice; cl
         values.paymentTerms = paymentTerm;
         values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
         values.paymentDue = setPaymentDue(values.createdAt);
-        updateForm(values);
+        updateInvoice(values);
         closeForm();
       }}
     >

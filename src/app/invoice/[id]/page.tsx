@@ -13,12 +13,18 @@ import EditInvoice from '@/app/components/EditInvoice';
 export default function ViewInvoice({ params }: { params: { id: string } }) {
   const [openEditInvoice, setOpenEditInvoice] = useState(false);
   const router = useRouter();
-  const { invoices } = useStore();
+  const { invoices, updateInvoice } = useStore();
   const invoice = invoices.filter((i) => i.id === params.id)[0];
   const statusStyle =
     invoice.status === 'paid' ? styles.paid : invoice.status === 'pending' ? styles.pending : styles.draft;
 
   const handleCloseEdit = () => setTimeout(() => setOpenEditInvoice(false), 300);
+
+  const markAsPaidInvoice = () => {
+    if (invoice.status === 'pending') {
+      updateInvoice({ ...invoice, status: 'paid' });
+    }
+  };
 
   return (
     <>
@@ -106,7 +112,9 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
           Edit
         </button>
         <button className={styles.delete_btn}>Delete</button>
-        <button className={styles.mark_as_paid_btn}>Mark as Paid</button>
+        <button className={styles.mark_as_paid_btn} onClick={markAsPaidInvoice}>
+          Mark as Paid
+        </button>
       </div>
       {openEditInvoice && <EditInvoice isOpen={openEditInvoice} handleCloseEdit={handleCloseEdit} invoice={invoice} />}
     </>

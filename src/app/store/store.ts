@@ -6,14 +6,14 @@ interface State {
   invoices: Invoice[];
   filter: string[];
   setFilter: (newFilter: string[]) => void;
-  updateForm: (invoice: Invoice) => void;
+  updateInvoice: (invoice: Invoice) => void;
 }
 
 const useStore = create<State>()((set) => ({
   invoices: [],
   filter: ['paid', 'pending', 'draft'],
   setFilter: (newFilter) => set((state) => ({ ...state, filter: newFilter })),
-  updateForm: (invoice: Invoice) =>
+  updateInvoice: (invoice: Invoice) =>
     set((state) => {
       return {
         ...state,
