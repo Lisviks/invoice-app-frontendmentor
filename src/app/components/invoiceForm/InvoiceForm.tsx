@@ -17,6 +17,16 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
 
+  const setPaymentDue = (date: string) => {
+    const dateCopy = new Date(date);
+    dateCopy.setDate(dateCopy.getDate() + paymentTerm);
+    const year = dateCopy.getFullYear();
+    const month = dateCopy.getMonth() + 1;
+    const day = dateCopy.getDate();
+    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+    return formattedDate;
+  };
+
   useEffect(() => {
     setPaymentTerm(initialValues.paymentTerms);
   }, [setPaymentTerm, initialValues]);
@@ -28,6 +38,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
         actions.setSubmitting(false);
         values.paymentTerms = paymentTerm;
         values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
+        values.paymentDue = setPaymentDue(values.createdAt);
         console.log(values);
       }}
     >
