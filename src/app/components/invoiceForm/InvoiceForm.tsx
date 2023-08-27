@@ -8,16 +8,19 @@ import { Invoice } from '../../interfaces';
 import { useState } from 'react';
 import InputField from './InputField';
 import Item from './Item';
+import Dropdown from './Dropdown';
 
 export default function InvoiceForm({ values }: { values: Invoice }) {
   const initialValues: Invoice = values;
   const [startDate, setStartDate] = useState<Date | null>(null);
+  const [paymentTerm, setPaymentTerm] = useState(1);
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, actions) => {
         actions.setSubmitting(false);
+        values.paymentTerms = paymentTerm;
         console.log(values);
       }}
     >
@@ -55,12 +58,7 @@ export default function InvoiceForm({ values }: { values: Invoice }) {
               </div>
               <div className={styles.field}>
                 <label htmlFor='paymentTerms'>Payment Terms</label>
-                <select name='paymentTerms' id='paymentTerms'>
-                  <option value='Net 1 Days'>Net 1 Days</option>
-                  <option value='Net 7 Days'>Net 7 Days</option>
-                  <option value='Net 14 Days'>Net 14 Days</option>
-                  <option value='Net 30 Days'>Net 30 Days</option>
-                </select>
+                <Dropdown paymentTerm={paymentTerm} setPaymentTerm={setPaymentTerm} />
               </div>
               <InputField id='projectDescription' name='description' text='Project Description' />
             </div>

@@ -1,0 +1,58 @@
+@import '../mixins.scss';
+
+.dropdown {
+  position: relative;
+  .dropdown_trigger,
+  .dropdown_trigger_open {
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1.25rem;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .dropdown_trigger_open {
+    img {
+      transform: rotate(180deg);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .list_wrapper {
+    width: 15rem;
+    position: absolute;
+    left: 50%;
+    top: 3.2rem;
+    transform: translateX(-50%);
+
+    .list {
+      list-style: none;
+      box-shadow: 0px 10px 20px 0px var(--filter-box-shadow);
+      border-radius: 0.5rem;
+      background-color: var(--filter-bg);
+      transform: scale(0);
+      transition: transform 0.3s ease;
+
+      .list_item,
+      .list_item_active {
+        @include font-1;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--filter-checkbox);
+        color: var(--datepicker);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: var(--highlight-purple);
+        }
+      }
+    }
+  }
+}
