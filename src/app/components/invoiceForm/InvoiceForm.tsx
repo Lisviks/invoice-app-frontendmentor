@@ -13,25 +13,38 @@ import CalendarIcon from '@/assets/icon-calendar.svg';
 import Image from 'next/image';
 import useStore from '@/app/store/store';
 
-export default function InvoiceForm({ values, closeForm }: { values: Invoice; closeForm: () => void }) {
-  const initialValues: Invoice = values;
+interface Props {
+  values: Invoice;
+  closeForm: () => void;
+  newInvoice?: boolean;
+}
+
+export default function InvoiceForm({ values, closeForm, newInvoice = false }: Props) {
+  const initialValues = values;
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
-  const { updateInvoice } = useStore();
+  const { updateInvoice, createInvoice } = useStore();
 
   const setPaymentDue = (date: string) => {
-    const dateCopy = new Date(date);
+    const dateCopy = new Date(date ? date : startDate || new Date());
     dateCopy.setDate(dateCopy.getDate() + paymentTerm);
     const year = dateCopy.getFullYear();
-    const month = dateCopy.getMonth() + 1;
+    const month = dateCopy.getMonth();
     const day = dateCopy.getDate();
-    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-    return formattedDate;
+    return new Date(year, month, day);
   };
 
   useEffect(() => {
     setPaymentTerm(initialValues.paymentTerms);
   }, [setPaymentTerm, initialValues]);
+
+  useEffect(() => {
+    if (newInvoice) {
+      setStartDate(new Date());
+    } else {
+      setStartDate(new Date(initialValues.createdAt));
+    }
+  }, [initialValues, setStartDate, newInvoice]);
 
   return (
     <Formik
@@ -40,8 +53,16 @@ export default function InvoiceForm({ values, closeForm }: { values: Invoice; cl
         actions.setSubmitting(false);
         values.paymentTerms = paymentTerm;
         values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
-        values.paymentDue = setPaymentDue(values.createdAt);
-        updateInvoice(values);
+        values.paymentDue = setPaymentDue(values.createdAt).toString();
+
+        if (newInvoice) {
+          values.id = Date.now().toString();
+          values.status = 'pending';
+          values.createdAt = startDate?.toString() || new Date().toString();
+          createInvoice(values);
+        } else {
+          updateInvoice(values);
+        }
         closeForm();
       }}
     >
@@ -75,10 +96,10 @@ export default function InvoiceForm({ values, closeForm }: { values: Invoice; cl
                   <DatePicker
                     id='invoiceDate'
                     name='createdAt'
-                    selected={startDate || new Date(initialValues.createdAt)}
+                    selected={startDate}
                     onChange={(date: Date) => setStartDate(date)}
                     dateFormat='d MMM y'
-                    disabled
+                    disabled={!newInvoice}
                   />
                   <Image src={CalendarIcon} alt='calendar icon' />
                 </div>

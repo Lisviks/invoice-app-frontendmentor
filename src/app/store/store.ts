@@ -10,6 +10,7 @@ interface State {
   setFilter: (newFilter: string[]) => void;
   updateInvoice: (invoice: Invoice) => void;
   deleteInvoice: (id: string) => void;
+  createInvoice: (invoice: Invoice) => void;
 }
 
 const useStore = create<State>()((set) => ({
@@ -18,7 +19,7 @@ const useStore = create<State>()((set) => ({
   invoices: [],
   filter: ['paid', 'pending', 'draft'],
   setFilter: (newFilter) => set((state) => ({ ...state, filter: newFilter })),
-  updateInvoice: (invoice: Invoice) =>
+  updateInvoice: (invoice) =>
     set((state) => {
       return {
         ...state,
@@ -32,6 +33,7 @@ const useStore = create<State>()((set) => ({
       };
     }),
   deleteInvoice: (id) => set((state) => ({ ...state, invoices: state.invoices.filter((item) => item.id !== id) })),
+  createInvoice: (invoice) => set((state) => ({ ...state, invoices: state.invoices.concat(invoice) })),
 }));
 
 (function getState() {

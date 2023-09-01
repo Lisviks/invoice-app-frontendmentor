@@ -8,12 +8,38 @@ import { useEffect, useState } from 'react';
 interface Props {
   isOpen: boolean;
   handleCloseEdit: () => void;
-  invoice: Invoice;
+  invoice?: Invoice;
+  newInvoice?: boolean;
 }
 
-export default function EditInvoice({ isOpen, handleCloseEdit, invoice }: Props) {
+export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoice }: Props) {
   const [transalateX, setTransalateX] = useState('0');
   const openingStyles = { transform: `translateX(${transalateX})` };
+
+  const emptyInvoice: Invoice = {
+    id: '',
+    createdAt: '',
+    paymentDue: '',
+    description: '',
+    paymentTerms: 1,
+    clientName: '',
+    clientEmail: '',
+    status: '',
+    senderAddress: {
+      street: '',
+      city: '',
+      postCode: '',
+      country: '',
+    },
+    clientAddress: {
+      street: '',
+      city: '',
+      postCode: '',
+      country: '',
+    },
+    items: [],
+    total: 0,
+  };
 
   const closeForm = () => {
     setTransalateX('0');
@@ -29,11 +55,16 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice }: Props)
       <div className={styles.go_back} onClick={() => closeForm()}>
         <Image src={ArrowLeft} alt='arrow left' /> Go back
       </div>
-      <div className={styles.edit_id}>
-        Edit <span>#</span>
-        {invoice.id}
-      </div>
-      <InvoiceForm values={invoice} closeForm={closeForm} />
+      {newInvoice ? (
+        <div className={styles.edit_id}>New Invoice</div>
+      ) : (
+        <div className={styles.edit_id}>
+          Edit <span>#</span>
+          {invoice!.id}
+        </div>
+      )}
+
+      <InvoiceForm values={invoice ? invoice : emptyInvoice} closeForm={closeForm} newInvoice={newInvoice} />
     </div>
   );
 }
