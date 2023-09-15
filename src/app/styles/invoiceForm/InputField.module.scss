@@ -13,6 +13,12 @@
     @include font-2;
     color: var(--royal-blue-alt);
     margin-bottom: 0.56rem;
+    display: flex;
+    justify-content: space-between;
+
+    .error_message {
+      margin-bottom: 0;
+    }
   }
 
   input {

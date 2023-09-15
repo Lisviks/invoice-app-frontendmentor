@@ -1,6 +1,7 @@
 'use client';
 
 import { Formik, Form, FieldArray } from 'formik';
+import { object, string, number, array } from 'yup';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from '@/app/styles/invoiceForm/InvoiceForm.module.scss';
@@ -13,6 +14,34 @@ import CalendarIcon from '@/assets/icon-calendar.svg';
 import Image from 'next/image';
 import useStore from '@/app/store/store';
 
+const emptyMessage = "can't be empty";
+const schema = object({
+  description: string().required(emptyMessage),
+  clientName: string().required(emptyMessage),
+  clientEmail: string().required(emptyMessage),
+  senderAddress: object({
+    street: string().required(emptyMessage),
+    city: string().required(emptyMessage),
+    postCode: string().required(emptyMessage),
+    country: string().required(emptyMessage),
+  }),
+  clientAddress: object({
+    street: string().required(emptyMessage),
+    city: string().required(emptyMessage),
+    postCode: string().required(emptyMessage),
+    country: string().required(emptyMessage),
+  }),
+  items: array()
+    .of(
+      object({
+        name: string().required(emptyMessage),
+        quantity: number().typeError(' ').required(' '),
+        price: number().typeError(' ').required(' '),
+      })
+    )
+    .min(1, 'An item must be added'),
+});
+
 interface Props {
   values: Invoice;
   closeForm: () => void;
@@ -24,6 +53,9 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
   const { updateInvoice, createInvoice } = useStore();
+
+  const [showEmptyFieldsError, setShowEmptyFieldsError] = useState(false);
+  const [showMissingItemError, setShowMissingItemError] = useState(false);
 
   const setPaymentDue = (date: string) => {
     const dateCopy = new Date(date ? date : startDate || new Date());
@@ -49,8 +81,8 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema={schema}
       onSubmit={(values, actions) => {
-        actions.setSubmitting(false);
         values.paymentTerms = paymentTerm;
         values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
         values.paymentDue = setPaymentDue(values.createdAt).toString();
@@ -67,7 +99,13 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
       }}
     >
       {(formik) => {
-        const { values } = formik;
+        const { errors, values } = formik;
+
+        const checkErrors = () => {
+          const hasIndividualFieldErrors = Object.keys(errors).some((key) => key !== 'items');
+          setShowEmptyFieldsError(hasIndividualFieldErrors || (Array.isArray(errors.items) && errors.items.length > 0));
+          setShowMissingItemError(!Array.isArray(errors.items) && errors.items !== undefined);
+        };
 
         return (
           <Form className={styles.form}>
@@ -131,12 +169,16 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
                 )}
               </FieldArray>
             </div>
+            <ul className={styles.error_messages}>
+              {showEmptyFieldsError && <li>- All fields must be added</li>}
+              {showMissingItemError && <li>- An item must be added</li>}
+            </ul>
             <div className={styles.spacer}></div>
             <div className={styles.actions}>
               <button className={styles.cancel_btn} onClick={closeForm} type='button'>
                 Cancel
               </button>
-              <button className={styles.submit_btn} type='submit'>
+              <button className={styles.submit_btn} type='submit' onClick={checkErrors}>
                 Submit
               </button>
             </div>

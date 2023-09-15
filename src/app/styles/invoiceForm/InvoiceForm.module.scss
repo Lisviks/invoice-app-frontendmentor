@@ -134,4 +134,14 @@
       }
     }
   }
+
+  .error_messages {
+    list-style: none;
+    margin: 2rem 1.5rem 1rem;
+
+    li {
+      color: var(--alert-red);
+      @include font-2;
+    }
+  }
 }
