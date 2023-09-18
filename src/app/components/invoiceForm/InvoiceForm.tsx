@@ -175,11 +175,26 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
             </ul>
             <div className={styles.spacer}></div>
             <div className={styles.actions}>
-              <button className={styles.cancel_btn} onClick={closeForm} type='button'>
-                Cancel
+              <button
+                className={styles.cancel_btn}
+                onClick={closeForm}
+                type='button'
+                style={newInvoice ? { width: '5.25rem' } : { width: '6rem' }}
+              >
+                {newInvoice ? 'Discard' : 'Cancel'}
               </button>
-              <button className={styles.submit_btn} type='submit' onClick={checkErrors}>
-                Submit
+              {newInvoice && (
+                <button className={styles.draft_btn} onClick={closeForm} type='button'>
+                  Save as Draft
+                </button>
+              )}
+              <button
+                className={styles.submit_btn}
+                onClick={checkErrors}
+                type='submit'
+                style={newInvoice ? { width: '7rem' } : { width: '8.625rem' }}
+              >
+                {newInvoice ? 'Save & Send' : 'Save Changes'}
               </button>
             </div>
           </Form>

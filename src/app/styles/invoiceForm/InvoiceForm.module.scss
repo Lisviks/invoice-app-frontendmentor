@@ -123,14 +123,19 @@
       &.cancel_btn {
         background-color: var(--platinum-gray);
         color: var(--royal-blue);
-        width: 6rem;
-        margin-right: 0.5rem;
+        margin-right: 0.4rem;
+      }
+
+      &.draft_btn {
+        background-color: #373b53;
+        color: var(--midnight-blue);
+        width: 7.3125rem;
+        margin-right: 0.4rem;
       }
 
       &.submit_btn {
         background-color: var(--highlight-purple);
         color: var(--neutral-light);
-        width: 8.625rem;
       }
     }
   }
