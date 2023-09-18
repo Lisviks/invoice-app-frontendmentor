@@ -112,8 +112,8 @@
 
     .client {
       margin-top: 1.94rem;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
 
       .dates {
         .invoice_date,
@@ -138,8 +138,6 @@
       }
 
       .bill_to {
-        margin-left: 3.75rem;
-
         p {
           @include font-2;
           color: var(--royal-blue);
