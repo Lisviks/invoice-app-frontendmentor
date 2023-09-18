@@ -140,7 +140,7 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
             </div>
             <div className={styles.date}>
               <div className={styles.field}>
-                <label htmlFor='invoiceDate' className={styles.disabled}>
+                <label htmlFor='invoiceDate' className={!newInvoice ? styles.disabled : ''}>
                   Invoice Date
                 </label>
                 <div className={styles.datepicker}>
