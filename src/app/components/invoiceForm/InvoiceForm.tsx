@@ -5,7 +5,7 @@ import { object, string, number, array } from 'yup';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from '@/app/styles/invoiceForm/InvoiceForm.module.scss';
-import { Invoice } from '../../interfaces';
+import { Invoice } from '@/app/interfaces';
 import { useEffect, useState } from 'react';
 import InputField from './InputField';
 import Item from './Item';
@@ -64,6 +64,19 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
     const month = dateCopy.getMonth();
     const day = dateCopy.getDate();
     return new Date(year, month, day);
+  };
+
+  const saveDraft = (values: Invoice) => {
+    values.paymentTerms = paymentTerm;
+    values.total = values.items.reduce((acc, val) => Number(val.total) + acc, 0);
+    values.paymentDue = setPaymentDue(values.createdAt).toString();
+
+    values.id = Date.now().toString();
+    values.status = 'pending';
+    values.createdAt = startDate?.toString() || new Date().toString();
+    values.status = 'draft';
+    createInvoice(values);
+    closeForm();
   };
 
   useEffect(() => {
@@ -184,7 +197,7 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
                 {newInvoice ? 'Discard' : 'Cancel'}
               </button>
               {newInvoice && (
-                <button className={styles.draft_btn} onClick={closeForm} type='button'>
+                <button className={styles.draft_btn} onClick={() => saveDraft(values)} type='button'>
                   Save as Draft
                 </button>
               )}
