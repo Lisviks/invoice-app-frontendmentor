@@ -12,7 +12,7 @@ export default function Filter() {
     filter.includes('draft') ? setDraft(true) : setDraft(false);
     filter.includes('pending') ? setPending(true) : setPending(false);
     filter.includes('paid') ? setPaid(true) : setPaid(false);
-  }, []);
+  }, [filter]);
 
   const filterFunc = (bool: boolean, filterName: string) => {
     if (!bool) {
