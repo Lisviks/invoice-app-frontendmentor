@@ -1,7 +1,7 @@
 import styles from '@/app/styles/Filter.module.scss';
 import useStore from '../store/store';
 import { useEffect, useState } from 'react';
-import { Status } from '../interfaces';
+import { Status } from '../types';
 
 export default function Filter() {
   const [draft, setDraft] = useState(true);

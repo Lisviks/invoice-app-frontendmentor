@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import data from '@/data.json';
-import { Invoice, Status, Theme } from '../interfaces';
+import { Invoice } from '../interfaces';
+import { Status, Theme } from '../types';
 
 interface State {
   theme: Theme;

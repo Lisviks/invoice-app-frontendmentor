@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Theme } from '../interfaces';
+import { Theme } from '../types';
 
 export default function ThemeSwitcher({ theme }: { theme: Theme }) {
   useEffect(() => {

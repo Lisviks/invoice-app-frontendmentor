@@ -1,3 +1,5 @@
+import { Status } from './types';
+
 interface Address {
   street: string;
   city: string;
@@ -11,8 +13,6 @@ interface Item {
   price: number;
   total: number;
 }
-
-export type Status = 'pending' | 'paid' | 'draft';
 
 export interface Invoice {
   id: string;
@@ -28,5 +28,3 @@ export interface Invoice {
   items: Item[];
   total: number;
 }
-
-export type Theme = 'light' | 'dark';

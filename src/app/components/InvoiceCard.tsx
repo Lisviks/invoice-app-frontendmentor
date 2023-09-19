@@ -1,13 +1,14 @@
 import styles from '@/app/styles/InvoiceCard.module.scss';
 import Link from 'next/link';
 import formatDate from '../util/formatDate';
+import { Status } from '../types';
 
 interface Props {
   id: string;
   date: string;
   name: string;
   amount: number;
-  status: string;
+  status: Status;
 }
 
 export default function InvoiceCard({ id, date, name, amount, status }: Props) {
