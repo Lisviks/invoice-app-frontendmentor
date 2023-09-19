@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
+import { Theme } from '../interfaces';
 
-export default function ThemeSwitcher({ theme }: { theme: any }) {
+export default function ThemeSwitcher({ theme }: { theme: Theme }) {
   useEffect(() => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';

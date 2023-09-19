@@ -28,3 +28,5 @@ export interface Invoice {
   items: Item[];
   total: number;
 }
+
+export type Theme = 'light' | 'dark';

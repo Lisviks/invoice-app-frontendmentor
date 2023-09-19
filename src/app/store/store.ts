@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 import data from '@/data.json';
-import { Invoice, Status } from '../interfaces';
+import { Invoice, Status, Theme } from '../interfaces';
 
 interface State {
-  theme: string;
-  setTheme: (theme: string) => void;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
   invoices: Invoice[];
   filter: Status[];
   setFilter: (newFilter: Status[]) => void;
