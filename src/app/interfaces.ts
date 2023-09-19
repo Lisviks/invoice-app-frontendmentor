@@ -12,7 +12,7 @@ interface Item {
   total: number;
 }
 
-type Status = 'pending' | 'paid' | 'draft';
+export type Status = 'pending' | 'paid' | 'draft';
 
 export interface Invoice {
   id: string;

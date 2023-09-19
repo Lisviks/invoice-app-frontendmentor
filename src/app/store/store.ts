@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import data from '@/data.json';
-import { Invoice } from '../interfaces';
+import { Invoice, Status } from '../interfaces';
 
 interface State {
   theme: string;
@@ -36,8 +36,10 @@ const useStore = create<State>()((set) => ({
   createInvoice: (invoice) => set((state) => ({ ...state, invoices: state.invoices.concat(invoice) })),
 }));
 
+const invoicesFromData = data.map((invoice) => ({ ...invoice, status: invoice.status as Status }));
+
 (function getState() {
-  useStore.setState({ invoices: data });
+  useStore.setState({ invoices: invoicesFromData });
 })();
 
 export default useStore;
