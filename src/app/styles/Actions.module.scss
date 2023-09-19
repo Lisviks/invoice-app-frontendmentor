@@ -59,3 +59,40 @@
     }
   }
 }
+
+@media (min-width: 768px) {
+  .actions {
+    margin: 3.88rem 3rem;
+
+    .invoices {
+      h2 {
+        font-size: 2.25rem;
+        letter-spacing: -0.07031rem;
+      }
+
+      p {
+        margin-top: 0.38rem;
+      }
+    }
+
+    .filter,
+    .show_filter {
+      margin-right: 2.53rem;
+
+      img {
+        margin-left: 0.88rem;
+      }
+    }
+
+    .new_invoice {
+      @include font-1;
+      width: 9.375rem;
+      height: 3rem;
+
+      div {
+        margin-left: 0.5rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+}
