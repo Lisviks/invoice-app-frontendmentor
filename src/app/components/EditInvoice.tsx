@@ -24,7 +24,7 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
     paymentTerms: 1,
     clientName: '',
     clientEmail: '',
-    status: '',
+    status: 'draft',
     senderAddress: {
       street: '',
       city: '',
