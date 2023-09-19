@@ -6,8 +6,8 @@ interface State {
   theme: string;
   setTheme: (theme: string) => void;
   invoices: Invoice[];
-  filter: string[];
-  setFilter: (newFilter: string[]) => void;
+  filter: Status[];
+  setFilter: (newFilter: Status[]) => void;
   updateInvoice: (invoice: Invoice) => void;
   deleteInvoice: (id: string) => void;
   createInvoice: (invoice: Invoice) => void;

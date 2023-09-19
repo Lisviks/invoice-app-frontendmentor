@@ -1,6 +1,7 @@
 import styles from '@/app/styles/Filter.module.scss';
 import useStore from '../store/store';
 import { useEffect, useState } from 'react';
+import { Status } from '../interfaces';
 
 export default function Filter() {
   const [draft, setDraft] = useState(true);
@@ -14,7 +15,7 @@ export default function Filter() {
     filter.includes('paid') ? setPaid(true) : setPaid(false);
   }, [filter]);
 
-  const filterFunc = (bool: boolean, filterName: string) => {
+  const filterFunc = (bool: boolean, filterName: Status) => {
     if (!bool) {
       setFilter(filter.filter((i) => i !== filterName));
     } else if (bool && !filter.includes(filterName)) {
