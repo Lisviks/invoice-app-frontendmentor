@@ -2,6 +2,8 @@ import styles from '@/app/styles/InvoiceCard.module.scss';
 import Link from 'next/link';
 import formatDate from '../util/formatDate';
 import { Status } from '../types';
+import ArrowRight from '@/assets/icon-arrow-right.svg';
+import Image from 'next/image';
 
 interface Props {
   id: string;
@@ -27,6 +29,9 @@ export default function InvoiceCard({ id, date, name, amount, status }: Props) {
       <div className={statusStyle}>
         <div></div>
         {status}
+      </div>
+      <div className={styles.arrow_right}>
+        <Image src={ArrowRight} alt='arrow right' />
       </div>
     </Link>
   );
