@@ -24,7 +24,9 @@ export default function Actions() {
         <div className={styles.invoices}>
           <h2>Invoices</h2>
           <p>
-            {screenWidth < 768
+            {filteredInvoices.length === 0
+              ? 'No invoices'
+              : screenWidth < 768
               ? `${filteredInvoices.length} invoices`
               : `There are ${filteredInvoices.length} total invoices`}
           </p>
