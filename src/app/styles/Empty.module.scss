@@ -36,3 +36,24 @@
     }
   }
 }
+
+@media (min-width: 768px) {
+  .empty {
+    width: 16rem;
+    margin: 13.5rem auto;
+
+    div {
+      width: 15.08381rem;
+    }
+
+    h3 {
+      margin: 4.13rem 0 1.44rem;
+    }
+
+    p {
+      @include font-2;
+      color: var(--midnight-blue);
+      width: 12.125rem;
+    }
+  }
+}
