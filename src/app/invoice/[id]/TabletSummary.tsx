@@ -16,7 +16,7 @@ export default function TabletSummary({ items }: { items: Item[] }) {
         {items.map((item) => (
           <tr key={item.name} className={styles.tr}>
             <td className={styles.cell}>{item.name}</td>
-            <td className={styles.cell}>{item.quantity}</td>
+            <td className={styles.cell}>{Number(item.quantity)}</td>
             <td className={styles.cell}>£ {Number(item.price).toFixed(2)}</td>
             <td className={styles.cell}>£ {Number(item.total).toFixed(2)}</td>
           </tr>

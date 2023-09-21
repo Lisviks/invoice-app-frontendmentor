@@ -9,7 +9,7 @@ export default function MobileSummary({ items }: { items: Item[] }) {
           <div>
             <p>{item.name}</p>
             <p>
-              {item.quantity} x £ {item.price}
+              {Number(item.quantity)} x £ {Number(item.price).toFixed(2)}
             </p>
           </div>
           <p className={styles.total}>£ {item.total}</p>
