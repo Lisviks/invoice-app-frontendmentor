@@ -1,0 +1,56 @@
+@import './mixins.scss';
+
+.items_table {
+  padding: 2rem 2rem 2.5rem;
+  width: 100%;
+
+  .header {
+    @include font-2;
+    color: var(--royal-blue);
+
+    .cell {
+      padding-bottom: 1rem;
+    }
+
+    .cell:nth-child(1) {
+      text-align: left;
+    }
+
+    .cell:nth-child(2) {
+      text-align: center;
+    }
+
+    .cell:nth-child(3),
+    .cell:nth-child(4) {
+      text-align: right;
+    }
+  }
+
+  .items_list {
+    @include font-1;
+    color: var(--deep-space-blue);
+
+    .cell {
+      padding: 1rem 0;
+    }
+
+    .cell:nth-child(1) {
+      text-align: left;
+      padding-right: 3rem;
+    }
+
+    .cell:nth-child(2) {
+      text-align: center;
+    }
+
+    .cell:nth-child(2),
+    .cell:nth-child(3) {
+      color: var(--royal-blue);
+    }
+
+    .cell:nth-child(3),
+    .cell:nth-child(4) {
+      text-align: right;
+    }
+  }
+}

@@ -7,9 +7,12 @@ import Image from 'next/image';
 import styles from '@/app/styles/Invoice.module.scss';
 import formatDate from '@/app/util/formatDate';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import EditInvoice from '@/app/components/EditInvoice';
 import DeleteConfirm from '@/app/components/DeleteConfirm';
+import useWindowWidth from '@/app/hooks/useWindowSize';
+import MobileSummary from './MobileSummary';
+import TabletSummary from './TabletSummary';
 
 export default function ViewInvoice({ params }: { params: { id: string } }) {
   const [openEditInvoice, setOpenEditInvoice] = useState(false);
@@ -19,6 +22,7 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
   const invoice = invoices.filter((i) => i.id === params.id)[0];
   const statusStyle =
     invoice.status === 'paid' ? styles.paid : invoice.status === 'pending' ? styles.pending : styles.draft;
+  const screenWidth = useWindowWidth();
 
   const handleCloseEdit = () => setTimeout(() => setOpenEditInvoice(false), 300);
 
@@ -41,6 +45,13 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
             <div></div>
             {invoice.status}
           </div>
+          {screenWidth >= 768 && (
+            <Buttons
+              setOpenEditInvoice={setOpenEditInvoice}
+              setDeleteModal={setDeleteModal}
+              markAsPaidInvoice={markAsPaidInvoice}
+            />
+          )}
         </div>
         <div className={styles.invoice_info}>
           <div className={styles.sender}>
@@ -84,44 +95,51 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
             </div>
           </div>
           <div className={styles.summary}>
-            <ul className={styles.items}>
-              {invoice.items.map((item) => (
-                <li key={item.name}>
-                  <div>
-                    <p>{item.name}</p>
-                    <p>
-                      {item.quantity} x £ {item.price}
-                    </p>
-                  </div>
-                  <p className={styles.total}>£ {item.total}</p>
-                </li>
-              ))}
-            </ul>
+            {screenWidth < 768 ? <MobileSummary items={invoice.items} /> : <TabletSummary items={invoice.items} />}
+
             <div className={styles.amount_due}>
               <p>Amount Due</p>
-              <p className={styles.total}>£ {invoice.total}</p>
+              <p className={styles.total}>£ {Number(invoice.total).toFixed(2)}</p>
             </div>
           </div>
         </div>
       </section>
-      <div className={styles.footer}>
-        <button
-          className={styles.edit_btn}
-          onClick={() => {
-            setOpenEditInvoice((state) => !state);
-          }}
-        >
-          Edit
-        </button>
-        <button className={styles.delete_btn} onClick={() => setDeleteModal(true)}>
-          Delete
-        </button>
-        <button className={styles.mark_as_paid_btn} onClick={markAsPaidInvoice}>
-          Mark as Paid
-        </button>
-      </div>
+      {screenWidth < 768 && (
+        <Buttons
+          setOpenEditInvoice={setOpenEditInvoice}
+          setDeleteModal={setDeleteModal}
+          markAsPaidInvoice={markAsPaidInvoice}
+        />
+      )}
       {openEditInvoice && <EditInvoice isOpen={openEditInvoice} handleCloseEdit={handleCloseEdit} invoice={invoice} />}
       {deleteModal && <DeleteConfirm id={invoice.id} setDeleteModal={setDeleteModal} router={router} />}
     </>
+  );
+}
+
+interface Props {
+  setOpenEditInvoice: Dispatch<SetStateAction<boolean>>;
+  setDeleteModal: Dispatch<SetStateAction<boolean>>;
+  markAsPaidInvoice: () => void;
+}
+
+function Buttons({ setOpenEditInvoice, setDeleteModal, markAsPaidInvoice }: Props) {
+  return (
+    <div className={styles.buttons}>
+      <button
+        className={styles.edit_btn}
+        onClick={() => {
+          setOpenEditInvoice((state) => !state);
+        }}
+      >
+        Edit
+      </button>
+      <button className={styles.delete_btn} onClick={() => setDeleteModal(true)}>
+        Delete
+      </button>
+      <button className={styles.mark_as_paid_btn} onClick={markAsPaidInvoice}>
+        Mark as Paid
+      </button>
+    </div>
   );
 }

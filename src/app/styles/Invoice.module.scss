@@ -181,26 +181,6 @@
       border-radius: 0.5rem;
       overflow: hidden;
 
-      .items {
-        list-style: none;
-
-        li {
-          @include font-1;
-          color: var(--deep-space-blue);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin: 1.5rem;
-
-          div p {
-            &:last-child {
-              color: var(--royal-blue-alt);
-              margin-top: 0.5rem;
-            }
-          }
-        }
-      }
-
       .amount_due {
         background-color: var(--invoice-grand-total);
         padding: 1.5rem;
@@ -226,7 +206,7 @@
   }
 }
 
-.footer {
+.buttons {
   padding: 1.35rem 1.5rem;
   background-color: var(--neutral-light-alt);
   text-align: center;
@@ -260,6 +240,81 @@
       width: 100%;
       background-color: var(--highlight-purple);
       color: var(--neutral-light);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .invoice {
+    .back {
+      margin: 3rem 2.5rem 2rem;
+    }
+
+    .status {
+      padding: 1.5rem 2rem;
+      margin: 2rem 2.5rem 1.5rem;
+      justify-content: unset;
+
+      .paid,
+      .pending,
+      .draft {
+        margin-right: auto;
+        margin-left: 1.25rem;
+      }
+    }
+
+    .invoice_info {
+      padding: 2rem;
+      margin: 0 2.5rem 8rem;
+
+      .sender {
+        display: flex;
+        justify-content: space-between;
+
+        .description {
+          margin-top: 0.5rem;
+        }
+
+        .address {
+          margin-top: 0;
+        }
+      }
+
+      .client {
+        margin-top: 1.31rem;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .sent_to {
+          margin-top: 0;
+        }
+      }
+
+      .summary {
+        margin-top: 2.94rem;
+        .amount_due {
+          padding: 2rem;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    padding: 0;
+    background-color: unset;
+    display: flex;
+
+    button {
+      &.edit_btn {
+        width: 4.5625rem;
+      }
+
+      &.delete_btn {
+        width: 5.5625rem;
+      }
+
+      &.mark_as_paid_btn {
+        width: 8.1875rem;
+      }
     }
   }
 }

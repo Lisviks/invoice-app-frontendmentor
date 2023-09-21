@@ -7,7 +7,7 @@ interface Address {
   country: string;
 }
 
-interface Item {
+export interface Item {
   name: string;
   quantity: number;
   price: number;
