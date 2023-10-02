@@ -52,3 +52,30 @@
     }
   }
 }
+
+@media (min-width: 768px) {
+  .item {
+    grid-template-columns: minmax(0, 2.14fr) minmax(0, 0.46fr) minmax(0, 1fr) minmax(0, 0.96fr);
+
+    div {
+      margin-bottom: 1.12rem;
+
+      &:nth-child(1) {
+        grid-column: 1 / 2;
+        margin-bottom: 0;
+      }
+
+      &:nth-child(2) {
+        grid-column: 2 / 3;
+      }
+
+      &:nth-child(3) {
+        grid-column: 3 / 4;
+      }
+
+      &:nth-child(4) {
+        grid-column: 4 / 5;
+      }
+    }
+  }
+}

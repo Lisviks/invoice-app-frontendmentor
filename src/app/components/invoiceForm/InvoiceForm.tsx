@@ -46,9 +46,10 @@ interface Props {
   values: Invoice;
   closeForm: () => void;
   newInvoice?: boolean;
+  scrolledToBottom: boolean;
 }
 
-export default function InvoiceForm({ values, closeForm, newInvoice = false }: Props) {
+export default function InvoiceForm({ values, closeForm, newInvoice = false, scrolledToBottom }: Props) {
   const initialValues = values;
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [paymentTerm, setPaymentTerm] = useState(1);
@@ -186,7 +187,7 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false }: P
               {showEmptyFieldsError && <li>- All fields must be added</li>}
               {showMissingItemError && <li>- An item must be added</li>}
             </ul>
-            <div className={styles.spacer}></div>
+            <div className={styles.shadow} style={{ opacity: `${scrolledToBottom ? 0 : 1}` }}></div>
             <div className={styles.actions}>
               <button
                 className={styles.cancel_btn}

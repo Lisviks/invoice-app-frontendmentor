@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from '@/app/styles/EditInvoice.module.scss';
 import { Invoice } from '../interfaces';
 import InvoiceForm from './invoiceForm/InvoiceForm';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   isOpen: boolean;
@@ -15,6 +15,7 @@ interface Props {
 export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoice }: Props) {
   const [transalateX, setTransalateX] = useState('0');
   const [backgroundOpacity, setBackgroundOpacity] = useState('0');
+  const [scrolledToBottom, setScrolledToBottom] = useState(false);
   const openingStyles = { transform: `translateX(${transalateX})` };
   const backgroundOpeningStyles = { opacity: `${backgroundOpacity}` };
 
@@ -54,6 +55,31 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
     isOpen ? setBackgroundOpacity('0.4984') : setBackgroundOpacity('0');
   }, [isOpen]);
 
+  const editInvoiceRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scroll = () => {
+      if (editInvoiceRef.current) {
+        const editInvoice = editInvoiceRef.current;
+        // console.log(editInvoice.offsetHeight);
+        // console.log(editInvoice.scrollHeight);
+        // console.log(editInvoice.clientHeight);
+        // console.log(Math.abs(editInvoice.scrollHeight - editInvoice.clientHeight - editInvoice.scrollTop) < 1);
+        const leftToScroll = Math.abs(editInvoice.scrollHeight - editInvoice.clientHeight - editInvoice.scrollTop);
+
+        leftToScroll < 1 ? setScrolledToBottom(true) : setScrolledToBottom(false);
+      }
+    };
+
+    if (editInvoiceRef.current) {
+      const editInvoice = editInvoiceRef.current;
+
+      editInvoice.addEventListener('scroll', scroll);
+
+      return () => editInvoice.removeEventListener('scroll', scroll);
+    }
+  });
+
   return (
     <>
       <div
@@ -61,7 +87,7 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
         style={isOpen ? backgroundOpeningStyles : {}}
         onClick={closeForm}
       ></div>
-      <div className={styles.edit_invoice} style={isOpen ? openingStyles : {}}>
+      <div ref={editInvoiceRef} className={styles.edit_invoice} style={isOpen ? openingStyles : {}}>
         <div className={styles.go_back} onClick={() => closeForm()}>
           <Image src={ArrowLeft} alt='arrow left' /> Go back
         </div>
@@ -74,7 +100,12 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
           </div>
         )}
 
-        <InvoiceForm values={invoice ? invoice : emptyInvoice} closeForm={closeForm} newInvoice={newInvoice} />
+        <InvoiceForm
+          values={invoice ? invoice : emptyInvoice}
+          closeForm={closeForm}
+          newInvoice={newInvoice}
+          scrolledToBottom={scrolledToBottom}
+        />
       </div>
     </>
   );
