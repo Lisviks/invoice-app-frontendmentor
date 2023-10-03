@@ -188,6 +188,7 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false, scr
               {showMissingItemError && <li>- An item must be added</li>}
             </ul>
             <div className={styles.shadow} style={{ opacity: `${scrolledToBottom ? 0 : 1}` }}></div>
+            <div className={styles.spacer}></div>
             <div className={styles.actions}>
               <button
                 className={styles.cancel_btn}

@@ -61,10 +61,6 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
     const scroll = () => {
       if (editInvoiceRef.current) {
         const editInvoice = editInvoiceRef.current;
-        // console.log(editInvoice.offsetHeight);
-        // console.log(editInvoice.scrollHeight);
-        // console.log(editInvoice.clientHeight);
-        // console.log(Math.abs(editInvoice.scrollHeight - editInvoice.clientHeight - editInvoice.scrollTop) < 1);
         const leftToScroll = Math.abs(editInvoice.scrollHeight - editInvoice.clientHeight - editInvoice.scrollTop);
 
         leftToScroll < 1 ? setScrolledToBottom(true) : setScrolledToBottom(false);
