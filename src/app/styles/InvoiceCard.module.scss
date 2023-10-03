@@ -135,3 +135,17 @@
     }
   }
 }
+
+@media (min-width: 1000px) {
+  .invoice_card {
+    margin: 0 0 1rem;
+
+    .id {
+      margin-right: 2cqh;
+    }
+
+    .date {
+      margin-right: 3.69rem;
+    }
+  }
+}
