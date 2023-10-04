@@ -318,3 +318,33 @@
     }
   }
 }
+
+@media (min-width: 1000px) {
+  .invoice {
+    margin: 4rem auto;
+    width: 45.625rem;
+
+    .back {
+      margin: 0;
+    }
+
+    .status {
+      padding: 1.5rem 2rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .invoice_info {
+      padding: 3rem;
+      margin: 1.5rem 0 3rem;
+
+      .summary {
+        margin-top: 2.75rem;
+      }
+    }
+  }
+
+  .buttons {
+    padding: 0;
+    grid-template-columns: 4.5625rem 5.5625rem 8.1875rem;
+  }
+}
