@@ -13,6 +13,7 @@ import DeleteConfirm from '@/app/components/DeleteConfirm';
 import useWindowWidth from '@/app/hooks/useWindowSize';
 import MobileSummary from './MobileSummary';
 import TabletSummary from './TabletSummary';
+import useDisableScroll from '@/app/hooks/useDisableScroll';
 
 export default function ViewInvoice({ params }: { params: { id: string } }) {
   const [openEditInvoice, setOpenEditInvoice] = useState(false);
@@ -31,6 +32,8 @@ export default function ViewInvoice({ params }: { params: { id: string } }) {
       updateInvoice({ ...invoice, status: 'paid' });
     }
   };
+
+  useDisableScroll(openEditInvoice);
 
   return (
     <>

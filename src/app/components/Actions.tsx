@@ -7,6 +7,7 @@ import Filter from './Filter';
 import { useState } from 'react';
 import EditInvoice from './EditInvoice';
 import useWindowWidth from '../hooks/useWindowSize';
+import useDisableScroll from '../hooks/useDisableScroll';
 
 export default function Actions() {
   const [openEditInvoice, setOpenEditInvoice] = useState(false);
@@ -17,6 +18,8 @@ export default function Actions() {
     if (filter.includes(i.status)) return i;
   });
   const screenWidth = useWindowWidth();
+
+  useDisableScroll(openEditInvoice);
 
   return (
     <>

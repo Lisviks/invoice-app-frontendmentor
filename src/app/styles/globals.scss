@@ -38,4 +38,9 @@ input {
     width: 45.625rem;
     margin: 0 auto;
   }
+
+  .disable_scroll {
+    height: 100vh;
+    overflow: hidden;
+  }
 }
