@@ -56,6 +56,7 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
   }, [isOpen]);
 
   const editInvoiceRef = useRef<HTMLDivElement>(null);
+  const editInvoiceBackgroundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const scroll = () => {
@@ -70,6 +71,11 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
     if (editInvoiceRef.current) {
       const editInvoice = editInvoiceRef.current;
 
+      if (editInvoiceBackgroundRef.current) {
+        editInvoice.style.top = `${window.scrollY}px`;
+        editInvoiceBackgroundRef.current.style.top = `${window.scrollY}px`;
+      }
+
       editInvoice.addEventListener('scroll', scroll);
 
       return () => editInvoice.removeEventListener('scroll', scroll);
@@ -79,6 +85,7 @@ export default function EditInvoice({ isOpen, handleCloseEdit, invoice, newInvoi
   return (
     <>
       <div
+        ref={editInvoiceBackgroundRef}
         className={styles.edit_invoice_outside_background}
         style={isOpen ? backgroundOpeningStyles : {}}
         onClick={closeForm}
