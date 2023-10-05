@@ -242,3 +242,32 @@
     }
   }
 }
+
+@media (min-width: 1000px) {
+  .form {
+    p {
+      margin-left: 9.94rem;
+    }
+
+    .sender,
+    .client {
+      margin: 1.5rem 3.5rem 3.06rem 9.94rem;
+    }
+
+    .date {
+      margin: 0 3.5rem 2.19rem 9.94rem;
+    }
+
+    .item_list {
+      margin: 0 3.5rem 0.94rem 9.94rem;
+    }
+
+    .actions {
+      padding: 2rem 3.5rem;
+    }
+
+    .error_messages {
+      margin: 2rem 3.5rem 1rem 9.94rem;
+    }
+  }
+}

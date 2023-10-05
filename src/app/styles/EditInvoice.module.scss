@@ -60,3 +60,20 @@
     transition: opacity 0.3s ease;
   }
 }
+
+@media (min-width: 1000px) {
+  .edit_invoice {
+    top: 0;
+    width: 44.9375rem;
+    height: 100%;
+
+    .edit_id {
+      margin: 3.69rem 9.94rem 2.87rem;
+    }
+  }
+
+  .edit_invoice_outside_background {
+    height: 100%;
+    top: 0;
+  }
+}
