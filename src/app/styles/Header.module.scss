@@ -34,6 +34,23 @@
 
   .theme_switch {
     margin-right: 1.5rem;
+
+    .sun_icon {
+      fill: #858bb2;
+    }
+
+    .moon_icon {
+      fill: #7e88c3;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      svg {
+        fill: #dfe3fa;
+        transition: fill 0.3s ease;
+      }
+    }
   }
 
   .avatar {

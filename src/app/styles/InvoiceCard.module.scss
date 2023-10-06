@@ -2,14 +2,21 @@
 
 .invoice_card {
   background-color: var(--neutral-light-alt);
+  border: 1px solid var(--neutral-light-alt);
   border-radius: 0.5rem;
   margin: 0 1.5rem 1rem;
   padding: 1.5rem 1.5rem 1.75rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  transition: border 0.3s ease;
 
   &:last-child {
     margin-bottom: 6rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid var(--highlight-purple);
   }
 
   .id {

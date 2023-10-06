@@ -29,6 +29,11 @@
 
     img {
       margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 
@@ -56,6 +61,11 @@
       align-items: center;
       margin-left: 0.37rem;
       margin-right: 0.5rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #9277ff;
     }
   }
 }
