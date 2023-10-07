@@ -9,6 +9,11 @@
     img {
       margin-right: 1.48rem;
     }
+
+    &:hover {
+      cursor: pointer;
+      color: var(--royal-blue-alt);
+    }
   }
 
   .status {
@@ -220,6 +225,10 @@
     border: none;
     border-radius: 1.5rem;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &:last-child {
       margin-right: 0;
     }
@@ -228,18 +237,31 @@
       width: 100%;
       background-color: var(--platinum-gray);
       color: var(--royal-blue);
+
+      &:hover {
+        color: #7e88c3;
+        background-color: var(--hover-edit-btn-bg);
+      }
     }
 
     &.delete_btn {
       width: 100%;
       background-color: var(--alert-red);
       color: var(--neutral-light);
+
+      &:hover {
+        background-color: #ff9797;
+      }
     }
 
     &.mark_as_paid_btn {
       width: 100%;
       background-color: var(--highlight-purple);
       color: var(--neutral-light);
+
+      &:hover {
+        background-color: #9277ff;
+      }
     }
   }
 }
