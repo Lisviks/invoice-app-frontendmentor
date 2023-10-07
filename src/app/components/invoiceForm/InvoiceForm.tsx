@@ -133,7 +133,12 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false, scr
             <p>Bill To</p>
             <div className={styles.client}>
               <InputField id='clientName' name='clientName' text="Client's Name" />
-              <InputField id='clientEmail' name='clientEmail' text="Client's Email" />
+              <InputField
+                id='clientEmail'
+                name='clientEmail'
+                text="Client's Email"
+                placeholder='e.g. email@example.com'
+              />
               <InputField id='clientStreet' name='clientAddress.street' text='Street Address' />
               <InputField id='clientCity' name='clientAddress.city' text='City' />
               <InputField id='clientPostCode' name='clientAddress.postCode' text='Post Code' />
@@ -160,7 +165,12 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false, scr
                 <label htmlFor='paymentTerms'>Payment Terms</label>
                 <Dropdown paymentTerm={paymentTerm} setPaymentTerm={setPaymentTerm} />
               </div>
-              <InputField id='projectDescription' name='description' text='Project Description' />
+              <InputField
+                id='projectDescription'
+                name='description'
+                text='Project Description'
+                placeholder='e.g. Graphic Design Service'
+              />
             </div>
             <div className={styles.item_list}>
               <p>Item List</p>

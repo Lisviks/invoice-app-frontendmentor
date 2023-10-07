@@ -2,7 +2,14 @@ import { ErrorMessage, Field } from 'formik';
 import styles from '@/app/styles/invoiceForm/InputField.module.scss';
 import { useCallback, useState } from 'react';
 
-export default function InputField({ id, name, text }: { id: string; name: string; text: string }) {
+interface Props {
+  id: string;
+  name: string;
+  text: string;
+  placeholder?: string;
+}
+
+export default function InputField({ id, name, text, placeholder }: Props) {
   const [isError, setIsError] = useState(false);
 
   const refCallback = useCallback((node: HTMLDivElement | null) => {
@@ -26,7 +33,7 @@ export default function InputField({ id, name, text }: { id: string; name: strin
         </ErrorMessage>
       </label>
 
-      <Field id={id} name={name} style={isError ? { borderColor: 'var(--alert-red)' } : {}} />
+      <Field id={id} name={name} style={isError ? { borderColor: 'var(--alert-red)' } : {}} placeholder={placeholder} />
     </div>
   );
 }
