@@ -45,10 +45,17 @@
       border: none;
     }
 
-    img {
+    svg {
       position: absolute;
       right: 0.47rem;
       bottom: 1rem;
+      fill: #888eb0;
+      transition: fill 0.3s ease;
+
+      &:hover {
+        cursor: pointer;
+        fill: var(--alert-red);
+      }
     }
   }
 }
@@ -67,6 +74,11 @@
 
       &:nth-child(2) {
         grid-column: 2 / 3;
+
+        input {
+          padding: 0 0.8rem;
+          text-align: center;
+        }
       }
 
       &:nth-child(3) {

@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import InputField from './InputField';
 import TotalField from './TotalField';
 import styles from '@/app/styles/invoiceForm/Item.module.scss';
-import DeleteIcon from '@/assets/icon-delete.svg';
+import DeleteIconSvg from './DeleteIconSvg';
 
 export default function Item({ index, remove }: { index: number; remove<T>(index: number): T | undefined }) {
   return (
@@ -13,7 +12,7 @@ export default function Item({ index, remove }: { index: number; remove<T>(index
       <div className={styles.total_field}>
         <label htmlFor='total'>Total</label>
         <TotalField index={index} name={`items[${index}].total`} disabled />
-        <Image src={DeleteIcon} alt='delete icon' onClick={() => remove(index)} />
+        <DeleteIconSvg />
       </div>
     </div>
   );

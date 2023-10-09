@@ -73,6 +73,12 @@
           color: var(--highlight-purple);
           background-color: transparent;
         }
+
+        &:hover {
+          cursor: pointer;
+          color: var(--highlight-purple);
+          background-color: transparent;
+        }
       }
 
       .react-datepicker__day--outside-month {

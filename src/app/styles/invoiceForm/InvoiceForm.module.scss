@@ -63,6 +63,12 @@
         border: 1px solid var(--sky-blue);
         border-radius: 0.25rem;
         background-color: var(--neutral-light-alt);
+        transition: border-color 0.3s ease;
+
+        &:hover {
+          cursor: pointer;
+          border-color: var(--highlight-purple);
+        }
       }
     }
 
@@ -98,6 +104,11 @@
       width: 100%;
       background-color: var(--platinum-gray);
       color: var(--royal-blue-alt);
+
+      &:hover {
+        cursor: pointer;
+        background-color: #dfe3fa;
+      }
     }
   }
 
@@ -124,10 +135,19 @@
       border-radius: 1.5rem;
       height: 3rem;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       &.cancel_btn {
         background-color: var(--platinum-gray);
         color: var(--royal-blue);
         margin-right: 0.4rem;
+
+        &:hover {
+          color: #7e88c3;
+          background-color: #dfe3fa;
+        }
       }
 
       &.draft_btn {
@@ -135,11 +155,20 @@
         color: var(--midnight-blue);
         width: 7.3125rem;
         margin-right: 0.4rem;
+
+        &:hover {
+          color: var(--midnight-blue);
+          background-color: var(--hover-draft-btn-bg);
+        }
       }
 
       &.submit_btn {
         background-color: var(--highlight-purple);
         color: var(--neutral-light);
+
+        &:hover {
+          background-color: #9277ff;
+        }
       }
     }
   }

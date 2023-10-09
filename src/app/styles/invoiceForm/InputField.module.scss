@@ -29,5 +29,11 @@
     border: 1px solid var(--sky-blue);
     border-radius: 0.25rem;
     background-color: var(--neutral-light-alt);
+    transition: border-color 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      border-color: var(--highlight-purple);
+    }
   }
 }
