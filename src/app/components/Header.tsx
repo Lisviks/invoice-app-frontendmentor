@@ -1,16 +1,27 @@
 import Image from 'next/image';
 import Logo from '@/assets/logo.svg';
-import MoonIcon from '@/assets/icon-moon.svg';
-import SunIcon from '@/assets/icon-sun.svg';
 import Avatar from '@/assets/image-avatar.jpg';
 import styles from '@/app/styles/Header.module.scss';
 import ThemeSwitcher from './ThemeSwitcher';
 import useStore from '../store/store';
 import MoonIconSvg from './MoonIconSvg';
 import SunIconSvg from './SunIconSvg';
+import { useEffect } from 'react';
+import { Theme } from '../types';
 
 export default function Header() {
   const { theme, setTheme } = useStore();
+
+  useEffect(() => {
+    const themeFromLS = (localStorage.getItem('Invoice-app-theme') as Theme) || 'light';
+    setTheme(themeFromLS);
+    console.log('setTheme');
+  }, [setTheme]);
+
+  useEffect(() => {
+    localStorage.setItem('Invoice-app-theme', theme);
+    console.log('theme');
+  }, [theme]);
 
   const switchTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
