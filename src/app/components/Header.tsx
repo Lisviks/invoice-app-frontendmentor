@@ -15,12 +15,10 @@ export default function Header() {
   useEffect(() => {
     const themeFromLS = (localStorage.getItem('Invoice-app-theme') as Theme) || 'light';
     setTheme(themeFromLS);
-    console.log('setTheme');
   }, [setTheme]);
 
   useEffect(() => {
     localStorage.setItem('Invoice-app-theme', theme);
-    console.log('theme');
   }, [theme]);
 
   const switchTheme = () => {
