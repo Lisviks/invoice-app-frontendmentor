@@ -201,7 +201,7 @@ export default function InvoiceForm({ values, closeForm, newInvoice = false, scr
             <div className={styles.spacer}></div>
             <div className={styles.actions}>
               <button
-                className={styles.cancel_btn}
+                className={newInvoice ? styles.discard_btn : styles.cancel_btn}
                 onClick={closeForm}
                 type='button'
                 style={newInvoice ? { width: '5.25rem' } : { width: '6rem' }}

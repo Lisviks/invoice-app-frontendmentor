@@ -139,7 +139,8 @@
         cursor: pointer;
       }
 
-      &.cancel_btn {
+      &.cancel_btn,
+      &.discard_btn {
         background-color: var(--platinum-gray);
         color: var(--royal-blue);
         margin-right: 0.4rem;
@@ -268,6 +269,10 @@
       background-color: var(--neutral-light-alt2);
       border-radius: 0 1.25rem 1.25rem 0;
       z-index: 5;
+
+      button.discard_btn {
+        margin-right: auto;
+      }
     }
   }
 }
@@ -292,7 +297,7 @@
     }
 
     .actions {
-      padding: 2rem 3.5rem;
+      padding: 2rem 3.5rem 2rem 9.94rem;
     }
 
     .error_messages {
